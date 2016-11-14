@@ -9,5 +9,5 @@
   <%= link_to image_tag("stfx_logo.png", alt: "StFX logo", id: "stfx-logo"),
               'https://www.stfx.ca/' %>
   </br>
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <%= if !logged_in? then link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" end %>
 </div>
