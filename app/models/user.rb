@@ -31,7 +31,7 @@ class User < ApplicationRecord
     digest = send("#{attribute}_digest")
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
-                    # Same as:    ......  == remember_token
+                    # Same as:    ......  == token
   end
 
   def forget
