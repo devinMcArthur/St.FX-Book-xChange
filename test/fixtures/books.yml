@@ -1,0 +1,26 @@
+matrix_algebra:
+  title: "Elementary Linear Algebra"
+  created_at: <%= 10.minutes.ago %>
+  user: fred
+
+discrete_math:
+  title: "Discrete Mathematics with Applications"
+  created_at: <%= 3.years.ago %>
+  user: fred
+
+mathematical_ideas:
+  title: "Mathematical Ideas"
+  created_at: <%= 2.hours.ago %>
+  user: fred
+
+most_recent:
+  title: "This is the most recent book"
+  created_at: <%= Time.zone.now %>
+  user: fred
+
+<% 30.times do |n| %>
+book_<%= n %>:
+  title: <%= Faker::Book.title %>
+  created_at: <%= 42.days.ago %>
+  user: fred
+<% end %>

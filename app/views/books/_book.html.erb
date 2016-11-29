@@ -1,0 +1,7 @@
+<li id="book-<%= book.id %>">
+  <span class="user"><%= link_to book.user.name, book.user %></span>
+  <span class="title"><%= book.title %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(book.created_at) %> ago.
+  </span>
+</li>

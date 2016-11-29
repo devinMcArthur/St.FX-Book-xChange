@@ -24,3 +24,9 @@ User.create!(name:  "Example User",
                activated: true,
                activated_at: Time.zone.now)
 end
+
+users = User.order(:created_at).take(6)
+50.times do
+  title = Faker::Book.title
+  users.each { |user| user.books.create!(title: title) }
+end
