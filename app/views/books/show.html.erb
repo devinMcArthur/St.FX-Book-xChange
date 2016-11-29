@@ -1,0 +1,12 @@
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="book_form">
+        <%= render 'shared/book_form' %>
+      </section>
+    </aside>
+  </div>
+<% end %>
