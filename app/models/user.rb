@@ -62,7 +62,7 @@ class User < ApplicationRecord
   end
 
   def feed
-    Book.where("user_id = ?", id)
+    Book.all
   end
 
   private
