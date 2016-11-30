@@ -24,3 +24,8 @@ book_<%= n %>:
   created_at: <%= 42.days.ago %>
   user: fred
 <% end %>
+
+sociology:
+  title: "How Societies Work"
+  created_at: <%= 3.days.ago %>
+  user: archer

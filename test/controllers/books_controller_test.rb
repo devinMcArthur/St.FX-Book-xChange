@@ -19,4 +19,13 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to login_url
   end
+
+  test "should redirect destroy for wrong book" do
+    log_in_as(users(:fred))
+    book = books(:sociology)
+    assert_no_difference 'Book.count' do
+      delete book_path(book)
+    end
+    assert_redirected_to books_path
+  end
 end
