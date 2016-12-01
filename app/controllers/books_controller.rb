@@ -20,7 +20,8 @@ class BooksController < ApplicationController
   end
 
   def show
-    @feed_items = Book.all.paginate(page: params[:page])
+    @feed_items = Book.all.paginate(page: params[:page]) if !params[:search].present?
+    @feed_items = Book.all.title(params[:search]).paginate(page: params[:page]) if params[:search].present?
     if logged_in?
       @book = current_user.books.build
     end
