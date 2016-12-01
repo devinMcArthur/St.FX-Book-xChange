@@ -20,9 +20,9 @@ class BooksController < ApplicationController
   end
 
   def show
+    @feed_items = Book.all.paginate(page: params[:page])
     if logged_in?
-      @book       = current_user.books.build
-      @feed_items = current_user.feed.paginate(page: params[:page])
+      @book = current_user.books.build
     end
   end
 
