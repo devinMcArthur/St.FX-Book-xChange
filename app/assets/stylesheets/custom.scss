@@ -4,6 +4,7 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+$stfx_blue: #2b569b;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -141,15 +142,6 @@ aside {
   }
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-.gravatar_edit {
-  margin-top: 15px;
-}
-
 /* Users index */
 
 .users {
@@ -166,13 +158,14 @@ aside {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
+  width: 75%;
   margin-bottom: 15px;
   @include box_sizing;
 }
 
 input {
   height: auto !important;
+  margin-left: 2px;
 }
 
 #error_explanation {
@@ -197,6 +190,12 @@ input {
     margin-left: 20px;
     font-weight: normal;
   }
+}
+
+.search {
+  position: absolute;
+  right: 0px;
+  margin-top: 5px;
 }
 
 #session_remember_me {

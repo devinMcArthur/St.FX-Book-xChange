@@ -9,22 +9,16 @@
       </section>
     </aside>
     <div class="col-md-8">
-      <%= form_tag books_path, :method => 'get' do %>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search" %>
-      <% end %>
-      <h3>All Books</h3>
+      <%= render 'shared/search' %>
+      <h1>All Books</h1>
       <%= render 'shared/feed' %>
     </div>
   </div>
 <% else %>
   <div class="row">
     <div class="col-md-8">
-      <%= form_tag books_path, :method => 'get' do %>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search" %>
-      <% end %>
-      <h3>All Books</h3>
+      <h1>All Books</h1>
+      <%= render 'shared/search' %>
       <%= render 'shared/feed' %>
     </div>
   </div>
