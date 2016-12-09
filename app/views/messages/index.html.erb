@@ -1,4 +1,8 @@
-<h3><%= User.find_by(id: @conversation.recipient_id).name %></h3>
+<% if current_user.id == @conversation.recipient_id then %>
+  <h3><%= User.find_by(id: @conversation.sender_id).name %></h3>
+<% else %>
+  <h3><%= User.find_by(id: @conversation.recipient_id).name %></h3>
+<% end %>
 <% if @over_ten %>
  <%= link_to 'Show Previous', '?m=all' %>
 <% end %>
