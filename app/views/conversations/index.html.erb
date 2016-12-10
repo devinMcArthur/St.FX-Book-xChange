@@ -9,21 +9,12 @@
     <% else %>
       <% recipient = User.find(conversation.sender_id) %>
     <% end %>
-    <%= link_to recipient.name,   conversation_messages_path(conversation)%>
+    <div class="item">
+      <%= link_to recipient.name,   conversation_messages_path(conversation)%> -
+      <%= Book.find_by(id: conversation.book_id).title %>
+    </div>
    <% end %>
   <% end %>
   </div>
- </div>
-</div>
-<div class="ui segment">
- <h3>All Users</h3>
-  <div class=”ui list”>
-   <% @users.each do |user| %>
-    <% if user.id != current_user.id %>
-     <div class="item">
-   <%= user.name %> <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' %>
- </div>
-  <% end %>
- <% end %>
  </div>
 </div>

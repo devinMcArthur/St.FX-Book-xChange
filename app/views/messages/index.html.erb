@@ -3,6 +3,7 @@
 <% else %>
   <h3><%= User.find_by(id: @conversation.recipient_id).name %></h3>
 <% end %>
+<span><h3><%= Book.find_by(id: @conversation.book_id).title %></h3></span>
 <% if @over_ten %>
  <%= link_to 'Show Previous', '?m=all' %>
 <% end %>
