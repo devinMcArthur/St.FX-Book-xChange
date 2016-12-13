@@ -5,10 +5,13 @@
     The host for the exchange of textbooks
     for St.FX University students
   </h2>
-  <%= link_to "Books", books_path, class: "btn btn-lg btn-primary" %>
-  </br>
+  <div class="home-button">
+    <%= if !logged_in? then link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" end %>
+  </div>
   <%= link_to image_tag("stfx_logo.png", alt: "StFX logo", id: "stfx-logo"),
               'https://www.stfx.ca/' %>
   </br>
-  <%= if !logged_in? then link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" end %>
+  <div class="home-button">
+    <%= link_to "Books", books_path, class: "btn btn-lg btn-primary" %>
+  </div>
 </div>

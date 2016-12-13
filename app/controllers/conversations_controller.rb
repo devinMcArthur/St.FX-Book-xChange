@@ -9,8 +9,12 @@ class ConversationsController < ApplicationController
   def create
     if Conversation.between(params[:sender_id], params[:recipient_id], params[:book_id]).present?
       @conversation = Conversation.between(params[:sender_id], params[:recipient_id], params[:book_id]).first
-    else
+    elsif params[:sender_id] != params[:recipient_id]
       @conversation = Conversation.create!(conversation_params)
+    else
+      redirect_to books_path
+      flash[:danger] = "Cannot talk to yourself :("
+      return
     end
     redirect_to conversation_messages_path(@conversation)
   end
