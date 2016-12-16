@@ -7,14 +7,15 @@
         <li><%= link_to "Books",   books_path, id: "nav-link" %></li>
         <% if logged_in? %>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="nav-link">
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <li><%= link_to "Profile",  current_user                  %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user)  %></li>
+              <li><%= link_to "Exchanges", conversations_path            %></li>
+              <li><%= link_to "Profile",   current_user                  %></li>
+              <li><%= link_to "Settings",  edit_user_path(current_user)  %></li>
               <li class="divider"></li>
-              <li><%= link_to "Log out",  logout_path, method: "delete" %></li>
+              <li><%= link_to "Log out",   logout_path, method: "delete" %></li>
             </ul>
           </li>
           <% else %>
