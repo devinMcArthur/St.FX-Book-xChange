@@ -7,12 +7,17 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    if Conversation.between(params[:sender_id], params[:recipient_id], params[:book_id]).present?
-      @conversation = Conversation.between(params[:sender_id], params[:recipient_id], params[:book_id]).first
+    if params[:recipient_id] != params[:sender_id]
+      if Conversation.between(params[:sender_id], params[:recipient_id], params[:book_id]).present?
+        @conversation = Conversation.between(params[:sender_id], params[:recipient_id], params[:book_id]).first
+      else
+        @conversation = Conversation.create!(conversation_params)
+      end
+      redirect_to conversation_messages_path(@conversation)
     else
-      @conversation = Conversation.create!(conversation_params)
+      flash[:danger] = "Can't talk to yourself"
+      redirect_to books_path
     end
-    redirect_to conversation_messages_path(@conversation)
   end
 
   private
