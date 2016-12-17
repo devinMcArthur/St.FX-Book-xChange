@@ -16,7 +16,7 @@ class ConversationsController < ApplicationController
       redirect_to conversation_messages_path(@conversation)
     else
       flash[:danger] = "Can't talk to yourself"
-      redirect_to books_path
+      redirect_to request.referrer || books_path
     end
   end
 
