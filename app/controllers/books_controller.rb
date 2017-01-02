@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :logged_in_user, only: [:create, :destroy, :trade]
+  before_action :correct_user,   only: [:destroy, :trade]
 
   def create
     @book = current_user.books.build(book_params)
@@ -32,7 +32,21 @@ class BooksController < ApplicationController
     end
   end
 
+  def trade
+    @book = Book.find_by(id: params[:book_id])
+    if @book.trade(params[:user_id])
+      flash[:success] = "Book was successfully traded"
+      redirect_to books_path
+    else
+      flash[:danger] = "Book trade was not successful"
+      redirect_to books_path
+    end
+  end
+
   private
+    def trade_params
+      params.permit(:user_id)
+    end
 
     def book_params
       params.require(:book).permit(:title)
@@ -40,6 +54,6 @@ class BooksController < ApplicationController
 
     def correct_user
       @book = current_user.books.find_by(id: params[:id])
-      redirect_to books_path if @book.nil?
+      #redirect_to books_path if @book.nil?
     end
 end

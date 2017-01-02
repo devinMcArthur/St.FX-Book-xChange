@@ -4,6 +4,15 @@
   <h3><%= User.find_by(id: @conversation.recipient_id).name %></h3>
 <% end %>
 <span><h3><%= Book.find_by(id: @conversation.book_id).title %></h3></span>
+
+<% if Book.find_by(id: @conversation.book_id).user_id == @conversation.sender_id then %>
+  <% @recipient = @conversation.recipient_id %>
+<% else %>
+  <% @recipient = @conversation.sender_id %>
+<% end %>
+
+<%= link_to "Trade", trade_books_path(@book, :book_id => @conversation.book_id, :user_id => @recipient) if current_user.id == Book.find(@conversation.book_id).user_id %>
+
 <% if @over_ten %>
  <%= link_to 'Show Previous', '?m=all' %>
 <% end %>

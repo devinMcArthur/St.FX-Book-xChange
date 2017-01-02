@@ -1,7 +1,7 @@
 <li id="book-<%= book.id %>">
   <span class="user"><%= link_to book.user.name, book.user %></span>
   <span class="title">
-    <% if logged_in? %>
+    <% if logged_in? && !current_user?(book.user) %>
       <%= link_to book.title, conversations_path(sender_id: current_user.id,
                                                  recipient_id: book.user_id,
                                                  book_id: book.id),
