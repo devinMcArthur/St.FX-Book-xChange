@@ -3,7 +3,8 @@ class ConversationsController < ApplicationController
 
   def index
     @users = User.all
-    @conversations = Conversation.all
+    @inwardInterests = Conversation.where(recipient_id: current_user.id)
+    @outwardInterests = Conversation.where(sender_id: current_user.id)
   end
 
   def create

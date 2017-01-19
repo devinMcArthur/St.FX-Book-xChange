@@ -3,15 +3,15 @@
     <%= link_to "stfx book xchange", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right navbar-dark">
-        <li><%= link_to "Home",    root_path,      id: "nav-link" %></li>
+        <li><%= link_to "Home",    root_path,  id: "nav-link" %></li>
         <li><%= link_to "Books",   books_path, id: "nav-link" %></li>
         <% if logged_in? %>
+          <li><%= link_to "Exchanges", conversations_path, id: "nav-link" %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="nav-link">
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <li><%= link_to "Exchanges", conversations_path            %></li>
               <li><%= link_to "Profile",   current_user                  %></li>
               <li><%= link_to "Settings",  edit_user_path(current_user)  %></li>
               <li class="divider"></li>

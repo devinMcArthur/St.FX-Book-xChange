@@ -1,20 +1,47 @@
 <div class="ui segment">
- <h3>Exchanges</h3>
- <div class="ui list">
-  <div class="item">
-   <% @conversations.each do |conversation| %>
-   <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-    <% if conversation.sender_id == current_user.id %>
-      <% recipient = User.find(conversation.recipient_id) %>
-    <% else %>
-      <% recipient = User.find(conversation.sender_id) %>
-    <% end %>
-    <div class="item">
-      <%= link_to recipient.name, conversation_messages_path(conversation)%> -
-      <%= Book.find_by(id: conversation.book_id).title %>
-    </div>
+ <h1>Exchanges</h1>
+
+ <div class="center jumbotron">
+   <% if !@outwardInterests.empty? %>
+    <h3>Outward Interests</h3>
    <% end %>
-  <% end %>
-  </div>
+   <div class="ui list">
+    <div class="item">
+     <% @outwardInterests.each do |outwardInterest| %>
+     <% if outwardInterest.sender_id == current_user.id || outwardInterest.recipient_id == current_user.id %>
+      <% if outwardInterest.sender_id == current_user.id %>
+        <% recipient = User.find(outwardInterest.recipient_id) %>
+      <% else %>
+        <% recipient = User.find(outwardInterest.sender_id) %>
+      <% end %>
+      <div class="item">
+        <%= link_to recipient.name, conversation_messages_path(outwardInterest)%> -
+        <%= Book.find_by(id: outwardInterest.book_id).title %>
+      </div>
+     <% end %>
+    <% end %>
+    </div>
+   </div>
+
+   <% if !@inwardInterests.empty? %>
+    <h3>Inward Interests</h3>
+   <% end %>
+   <div class="ui list">
+    <div class="item">
+     <% @inwardInterests.each do |inwardInterest| %>
+     <% if inwardInterest.sender_id == current_user.id || inwardInterest.recipient_id == current_user.id %>
+      <% if inwardInterest.sender_id == current_user.id %>
+        <% recipient = User.find(inwardInterest.recipient_id) %>
+      <% else %>
+        <% recipient = User.find(inwardInterest.sender_id) %>
+      <% end %>
+      <div class="item">
+        <%= link_to recipient.name, conversation_messages_path(inwardInterest)%> -
+        <%= Book.find_by(id: inwardInterest.book_id).title %>
+      </div>
+     <% end %>
+    <% end %>
+    </div>
+   </div>
  </div>
 </div>

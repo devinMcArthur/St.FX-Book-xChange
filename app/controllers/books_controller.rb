@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy, :trade]
-  before_action :correct_user,   only: [:destroy, :trade]
+  before_action :correct_user,   only: [:destroy]
 
   def create
     @book = current_user.books.build(book_params)
@@ -54,6 +54,6 @@ class BooksController < ApplicationController
 
     def correct_user
       @book = current_user.books.find_by(id: params[:id])
-      #redirect_to books_path if @book.nil?
+      redirect_to books_path if @book.nil?
     end
 end
