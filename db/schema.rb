@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207011307) do
+ActiveRecord::Schema.define(version: 20170120184905) do
 
   create_table "books", force: :cascade do |t|
     t.text     "title"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20161207011307) do
     t.datetime "updated_at",                      null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "event_type"
+    t.string   "event_id"
+    t.boolean  "read",       default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|

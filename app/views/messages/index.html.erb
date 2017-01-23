@@ -11,7 +11,10 @@
   <% @recipient = @conversation.sender_id %>
 <% end %>
 
-<%= link_to "Trade", trade_books_path(@book, :book_id => @conversation.book_id, :user_id => @recipient), data: { confirm: "You sure? Ensure the other person has received your book before trading!" } if current_user.id == Book.find(@conversation.book_id).user_id %>
+<%= link_to "Trade", trade_books_path(@book, :book_id => @conversation.book_id, :user_id => @recipient),
+                     class: "btn btn-lg btn-primary",
+                     data: { confirm: "You sure? Ensure the other person has received your book before trading!" }
+                     if current_user.id == Book.find(@conversation.book_id).user_id %>
 
 <% if @over_ten %>
  <%= link_to 'Show Previous', '?m=all' %>
