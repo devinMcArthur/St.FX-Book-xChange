@@ -3,7 +3,11 @@
 <% else %>
   <h3><%= User.find_by(id: @conversation.recipient_id).name %></h3>
 <% end %>
-<span><h3><%= Book.find_by(id: @conversation.book_id).title %></h3></span>
+<span><h3><%= Book.find_by(id: @conversation.book_id).title %></h3>
+  <%= link_to "Trade", trade_books_path(@book, :book_id => @conversation.book_id, :user_id => @recipient),
+                       class: "btn btn-primary",
+                       data: { confirm: "You sure? Ensure the other person has received your book before trading!" } if current_user.id == Book.find(@conversation.book_id).user_id %>
+</span>
 
 <% if Book.find_by(id: @conversation.book_id).user_id == @conversation.sender_id then %>
   <% @recipient = @conversation.recipient_id %>
@@ -11,13 +15,8 @@
   <% @recipient = @conversation.sender_id %>
 <% end %>
 
-<%= link_to "Trade", trade_books_path(@book, :book_id => @conversation.book_id, :user_id => @recipient),
-                     class: "btn btn-lg btn-primary",
-                     data: { confirm: "You sure? Ensure the other person has received your book before trading!" }
-                     if current_user.id == Book.find(@conversation.book_id).user_id %>
-
 <% if @over_ten %>
- <%= link_to 'Show Previous', '?m=all' %>
+ <%= link_to 'Show Previous', '?m=all', class: "btn btn-primary" %>
 <% end %>
 <div class="ui segment">
  <% @messages.each do |message| %>
