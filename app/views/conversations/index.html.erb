@@ -2,28 +2,36 @@
  <h1>Exchanges</h1>
 
  <div class="center jumbotron">
-   <% if !@outwardInterests.empty? %>
+   <% if @outwardInterests.exists? %>
     <h3>Outward Interests</h3>
    <% end %>
    <div class="ui list">
     <div class="item">
      <% @outwardInterests.each do |outwardInterest| %>
+     <!-- Only show if user is apart of the conversation -->
      <% if outwardInterest.sender_id == current_user.id || outwardInterest.recipient_id == current_user.id %>
+      <!-- Show the name of the other user -->
       <% if outwardInterest.sender_id == current_user.id %>
         <% recipient = User.find(outwardInterest.recipient_id) %>
       <% else %>
         <% recipient = User.find(outwardInterest.sender_id) %>
       <% end %>
       <div class="item">
+        <% if outwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
+          <span class="glyphicon glyphicon-envelope"></span>
+        <% end %>
         <%= link_to recipient.name, conversation_messages_path(outwardInterest)%> -
         <%= Book.find_by(id: outwardInterest.book_id).title %>
+        <% if outwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
+          (<%= outwardInterest.notifications.where(user_id: current_user.id, read: false).count %>)
+        <% end %>
       </div>
      <% end %>
     <% end %>
     </div>
    </div>
 
-   <% if !@inwardInterests.empty? %>
+   <% if @inwardInterests.exists? %>
     <h3>Inward Interests</h3>
    <% end %>
    <div class="ui list">
@@ -36,8 +44,14 @@
         <% recipient = User.find(inwardInterest.sender_id) %>
       <% end %>
       <div class="item">
+        <% if inwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
+          <span class="glyphicon glyphicon-envelope"></span>
+        <% end %>
         <%= link_to recipient.name, conversation_messages_path(inwardInterest)%> -
         <%= Book.find_by(id: inwardInterest.book_id).title %>
+        <% if inwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
+          (<%= inwardInterest.notifications.where(user_id: current_user.id, read: false).count %>)
+        <% end %>
       </div>
      <% end %>
     <% end %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'notifications/link_through'
+
   get 'book_feed/show'
 
   get 'password_resets/new'

@@ -3,7 +3,7 @@ class Conversation < ActiveRecord::Base
   belongs_to :recipient, :foreign_key => :recipient_id, class_name: 'User'
   belongs_to :book, :foreign_key => :book_id, class_name: 'Book'
   has_many :messages, dependent: :destroy
-
+  has_many :notifications, dependent: :destroy
 
   #validates_uniqueness_of :sender_id, :scope => [:recipient_id, :book_id]
 

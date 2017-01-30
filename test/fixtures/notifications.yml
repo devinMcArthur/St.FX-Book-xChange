@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sender: one
+  receiver: one
+  conversation: one
+  message_id: 1
+  read: false
+
+two:
+  sender: two
+  receiver: two
+  conversation: two
+  message_id: 1
+  read: false

@@ -13,11 +13,7 @@ class MessagesController < ApplicationController
       @over_ten = false
       @messages = @conversation.messages
     end
-    if @messages.last
-      if @messages.last.user_id != current_user.id
-        @messages.last.read = true;
-      end
-    end
+    @conversation.notifications.update_all read: true
     @message = @conversation.messages.new
   end
 
@@ -28,6 +24,7 @@ class MessagesController < ApplicationController
   def create
     @message = @conversation.messages.new(message_params)
     if @message.save
+      create_notification @conversation, @message
       redirect_to conversation_messages_path(@conversation)
       flash[:success] = "Message sent"
     end
@@ -36,5 +33,12 @@ class MessagesController < ApplicationController
   private
     def message_params
       params.require(:message).permit(:body, :user_id)
+    end
+
+    def create_notification(conversation, message)
+      Notification.create(sender_id: current_user.id,
+                          user_id: conversation.sender_id == current_user.id ? conversation.recipient_id : conversation.sender_id,
+                          conversation_id: conversation.id,
+                          message_id: message.id)
     end
 end
