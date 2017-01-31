@@ -10,7 +10,7 @@ class HerokuNotifications < ActiveRecord::Migration[5.0]
       t.timestamps null: false
     end
     add_foreign_key :notifications, :users
-    add_foreign_key :notifications, :users, column: :user_id
+    add_foreign_key :notifications, :users, column: :user_id_id
     add_foreign_key :notifications, :conversations, column: :conversation_id
   end
 end
