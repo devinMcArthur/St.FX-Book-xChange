@@ -1,5 +1,5 @@
 class ChangeNotificationColumn < ActiveRecord::Migration[5.0]
   def change
-    rename_column :notifications, :receiver_id, :user_id
+    rename_column :notifications, :message, :message_id
   end
 end
