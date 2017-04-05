@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
       @over_ten = false
       @messages = @conversation.messages
     end
-    @conversation.notifications.update_all read: true
+    @conversation.notifications.where(:user_id => current_user.id).update_all read: true
     @message = @conversation.messages.new
   end
 
