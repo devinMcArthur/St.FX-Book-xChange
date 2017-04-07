@@ -22,9 +22,9 @@ class BooksController < ApplicationController
   def show
     # Show all books if not searching
     if !params[:search].present?
-      @feed_items = Book.all.paginate(page: params[:page])
+      @feed_items = Book.all.paginate(page: params[:page]).order('id ASC')
     else
-      @feed_items = Book.all.title(params[:search]).paginate(page: params[:page])
+      @feed_items = Book.all.title(params[:search]).paginate(page: params[:page]).order('id ASC')
     end
     # Allow book creation when logged in
     if logged_in?
