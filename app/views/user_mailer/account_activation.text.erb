@@ -1,5 +1,21 @@
-Hi <%= @user.name %>,
+St.FX Book xChange
+Welcome <%= @user.name %>,
 
-Welcome to the Sample App! Click on the link below to activate your account:
+Congratulations! You have sucessfully signed up for the premier online experience of a lifetime,
+through the St.FX University Textbook Exchange
 
+After proper use of this site, I personally guarantee you will have saved enough money to afford
+at least one extra night of revelry at Piper's Pub (RIP Splitties) with your fellow Xavierians.
+
+However, in order for your inauguration to the stfxchange site to be official, it is necessary for
+you to call Bob Hale, and ask him to bring back Burmac. Where I will then, authorize your account.
+
+Or, you could simply click on the following link:
 <%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+
+If during your experience you come across any problems or you wish to make a suggestion about this
+site please email me, as I gladly appreciate all feedback.
+Contact Page: <%= contact_url %>
+
+Signed,
+The Manifestation of St.FX Book Exchange in email form
