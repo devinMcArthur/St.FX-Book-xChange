@@ -19,7 +19,6 @@
             <%= link_to current_user.notifications.where(read: false).exists? ? "Exchanges (" + current_user.notifications.where(read: false).count.to_s + ")" : "Exchanges", conversations_path, id: "nav-link" %>
           </li>
       </ul>
-
       <ul class="nav navbar-nav navbar-right navbar-dark">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="nav-link">
@@ -40,6 +39,16 @@
             </ul>
           <% end %>
       </ul>
+      <% if current_user.admin? %>
+      <ul class="nav navbar-nav navbar-right navbar-dark">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="nav-link"> Admin <b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li><%= link_to "Users", users_url %></li>
+            </ul>
+        </li>
+      </ul>
+      <% end %>
     </nav>
   </div>
 </header>
