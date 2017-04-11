@@ -1,9 +1,28 @@
 <h1>St.FX Book xChange</h1>
-<p>Hi <%= @user.name %>,</p>
+<p>Welcome <%= @user.name %>,</p>
 
 <p>
-Welcome to the St.FX Book xChange! Click on the link below to activate your account:
+Congratulations! You have sucessfully signed up for the premier online experience of a lifetime,
+through the St.FX University Textbook Exchange
 </p>
-
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+<p>
+After proper use of this site, I personally guarantee you will have saved enough money to afford
+at least one extra night of revelry at Piper's Pub (RIP Splitties) with your fellow Xavierians.
+</p>
+<p>
+However, in order for your inauguration to the stfxchange site to be official, it is necessary for
+you to call Bob Hale, and ask him to bring back Burmac. Where I will then, authorize your account.
+</p>
+<p>
+Or, you could simply click on the following link:
+<%= link_to "Activate the easy way", edit_account_activation_url(@user.activation_token,
                                                     email: @user.email) %>
+</p>
+<p>
+If during your experience you come across any problems or you wish to make a suggestion about this
+site please <%= link_to "email me", contact_url %>, as I gladly appreciate all feedback.
+</p>
+<p>
+Signed, </br>
+The Manifestation of St.FX Book Exchange in email form
+</p>
