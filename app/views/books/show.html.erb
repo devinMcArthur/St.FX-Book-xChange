@@ -2,13 +2,13 @@
   <div class="container-fluid">
 
     <div class="row">
-      <aside class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-        <section class="user_info">
-          <%= render 'shared/user_info' %>
-        </section>
-        <section class="book_form">
-          <%= render 'shared/book_form' %>
-        </section>
+      <aside class="hidden-xs col-sm-3 col-md-3 col-lg-3" style="float: left;">
+          <section class="user_info">
+            <%= render 'shared/user_info' %>
+          </section>
+          <section class="book_form">
+            <%= render 'shared/book_form' %>
+          </section>
       </aside>
 
       <div class="col-xs-16 col-sm-8 col-md-8 col-lg-8">
@@ -22,7 +22,6 @@
         </div>
         <%= render 'shared/feed' %>
       </div>
-
     </div>
   </div>
 <% else %>
