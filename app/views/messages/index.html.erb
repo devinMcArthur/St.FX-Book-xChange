@@ -1,3 +1,4 @@
+<%= render "layouts/conversation_sidebar" %>
 <% if current_user.id == @conversation.recipient_id then %>
   <h3><%= User.find_by(id: @conversation.sender_id).name %></h3>
 <% else %>
@@ -8,6 +9,9 @@
                        class: "btn btn-primary",
                        data: { confirm: "You sure? Ensure the other person has received your book before trading!" } if current_user.id == Book.find(@conversation.book_id).user_id %>
 </span>
+<% if @over_ten %>
+ <%= link_to 'Show Previous', '?m=all', class: "btn btn-primary" %>
+<% end %>
 
 <% if Book.find_by(id: @conversation.book_id).user_id == @conversation.sender_id then %>
   <% @recipient = @conversation.recipient_id %>
@@ -15,27 +19,31 @@
   <% @recipient = @conversation.sender_id %>
 <% end %>
 
-<% if @over_ten %>
- <%= link_to 'Show Previous', '?m=all', class: "btn btn-primary" %>
-<% end %>
-<div class="ui segment">
+<div class="conversation-body">
  <% @messages.each do |message| %>
+ <ul>
   <% if message.body %>
    <% user = User.find(message.user_id) %>
-   <div class="item">
-    <div class="content">
-     <div class="header"><strong><%= user.name %></strong>     <%= message.message_time %></div>
-      <div class="list">
-       <div class="item">
-        <i class="right triangle icon"></i>
-         <%= message.body %>
-      </div>
+   <% if message.user_id == current_user.id %>
+    <li>
+    <div class="sender-content">
+   <% else %>
+    <li>
+    <div class="receiver-content">
+   <% end %>
+     <div class="message-header">
+      <strong><%= user.name %></strong>  <%= message.message_time %>
+     </div>
+     <div class="message-body">
+       <%= message.body %>
+     </div>
     </div>
-   </div>
- </div>
+    </li>
+  <% end %>
+</ul>
  <% end %>
-<% end %>
 </div>
+
 <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
  <div class="field">
    <%= f.text_area :body, class: "form-control" %>

@@ -21,6 +21,15 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def destroy
+    @conversation = Conversation.find(params[:id])
+    if @conversation.present?
+      @conversation.destroy
+      flash[:success] = "Conversation has successfully been deleted"
+      redirect_to conversations_path
+    end
+  end
+
   private
     def conversation_params
       params.permit(:sender_id, :recipient_id, :book_id)

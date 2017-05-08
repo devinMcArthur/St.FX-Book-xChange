@@ -22,8 +22,9 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :books,               only: [:create, :destroy, :edit]
+  resources :conversations,       only: [:index, :create, :destroy]
   resources :conversations do
-    resources :messages
+    resources :messages, only: [:index, :create, :destroy]
   end
   resources :books do
     collection do

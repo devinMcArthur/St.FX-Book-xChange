@@ -1,6 +1,5 @@
 <div class="ui segment">
  <h1>Exchanges</h1>
-
  <div class="center jumbotron">
    <% if @outwardInterests.exists? %>
     <h3>Outward Interests</h3>
@@ -20,8 +19,12 @@
         <% if outwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
           <span class="glyphicon glyphicon-envelope"></span>
         <% end %>
-        <%= link_to recipient.name, conversation_messages_path(outwardInterest)%> -
-        <%= Book.find_by(id: outwardInterest.book_id).title %>
+        <% book = Book.find_by(id: outwardInterest.book_id).title %>
+        <%= link_to recipient.name + ' - ' + book, conversation_messages_path(outwardInterest)%>
+        <!-- Delete -->
+        <% if current_user.id == outwardInterest.sender_id %> |
+          <%= link_to "Delete", outwardInterest, method: :delete, data: { confirm: "You sure?" } %>
+        <% end %>
         <% if outwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
           (<%= outwardInterest.notifications.where(user_id: current_user.id, read: false).count %>)
         <% end %>
@@ -47,8 +50,8 @@
         <% if inwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
           <span class="glyphicon glyphicon-envelope"></span>
         <% end %>
-        <%= link_to recipient.name, conversation_messages_path(inwardInterest)%> -
-        <%= Book.find_by(id: inwardInterest.book_id).title %>
+        <% book = Book.find_by(id: inwardInterest.book_id).title %>
+        <%= link_to recipient.name + ' - ' + book, conversation_messages_path(inwardInterest)%> 
         <% if inwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
           (<%= inwardInterest.notifications.where(user_id: current_user.id, read: false).count %>)
         <% end %>

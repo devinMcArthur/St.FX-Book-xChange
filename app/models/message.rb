@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
-  belongs_to :conversation
-  belongs_to :user
+  belongs_to :conversation, :foreign_key => :conversation_id
+  belongs_to :user, :foreign_key => :user_id
 
   #after_create :send_notification
   validates_presence_of :body, :conversation_id, :user_id

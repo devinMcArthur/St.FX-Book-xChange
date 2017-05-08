@@ -8,7 +8,16 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <div class="container">
+    <!-- Moves container right for conversations sidebar -->
+    <% if params[:conversation_id].present? %>
+      <% if current_page?(conversation_messages_path(params[:conversation_id])) %>
+        <div class="container" style="position:absolute; left:200px; position:center;">
+      <% else %>
+        <div class="container">
+      <% end %>
+    <% else %>
+        <div class="container">
+    <% end %>
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>

@@ -4,21 +4,15 @@ class MessagesController < ApplicationController
   end
 
   def index
+    @inwardInterests = Conversation.where(recipient_id: current_user.id)
+    @outwardInterests = Conversation.where(sender_id: current_user.id)
     @messages = @conversation.messages
-    if @messages.length > 10
-      @over_ten = true
-      @messages = @messages[-10..-1]
-    end
-    if params[:m]
-      @over_ten = false
-      @messages = @conversation.messages
-    end
     @conversation.notifications.where(:user_id => current_user.id).update_all read: true
     @message = @conversation.messages.new
   end
 
   def new
-    @mesage = @conversation.messages.new
+    @message = @conversation.messages.new
   end
 
   def create
