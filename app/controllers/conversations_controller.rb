@@ -30,6 +30,14 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def update
+    @conversation = Conversation.find(params[:id])
+    if @conversation.update_attributes(negotiation_params)
+      flash[:success] = "Price successfully changed!"
+      redirect_to :back
+    end
+  end
+
   private
     def conversation_params
       params.permit(:sender_id, :recipient_id, :book_id)
@@ -38,5 +46,9 @@ class ConversationsController < ApplicationController
     def correct_user
       @user = User.find(params[:user_id])
       redirect_to(root_url) unless current_user?(@user)
+    end
+
+    def negotiation_params
+      params.require(:conversation).permit(:negotiated_price)
     end
 end
