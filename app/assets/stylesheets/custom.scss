@@ -326,36 +326,32 @@ aside {
 
 /* Conversation messages */
 .conversation-body {
+    padding: 10px;
     height: 60vh;
-    width: auto;
+    width: 80%;
     background-color: #e7e5ff;
     overflow-y: scroll;
     ul {
       list-style-type: none;
-      margin: 0;
-      padding: 0;
     }
-    li {
-      position: relative;
-    }
-      .sender-content {
-        padding: 10px 5px 10px 5px;
+    .sender-content {
+        margin: 0 0 5px 100vh;
+        padding: 10px;
         background-color: #a6c0ea;
         float: right;
-        position: relative;
         border: 2px solid #e7e5ff;
         border-radius: 5px;
         height: auto;
         width: 40%;
         display: block;
     }
-      .receiver-content {
-        padding: 10px 5px 10px 5px;
-        margin: 10px 5px 10px 5px;
+    .receiver-content {
+        margin: 0 100vh 5px 0;
+        padding: 10px;
         background-color: #dbdbdb;
         float: left;
         border: 2px solid #e7e5ff;
-        border-radius: 6px;
+        border-radius: 5px;
         height: auto;
         width: 40%;
         display: block;
