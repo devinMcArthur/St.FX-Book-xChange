@@ -43,10 +43,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def update
-    @book = Book.find(params[:id])
-  end
-
   private
     def trade_params
       params.permit(:user_id)
