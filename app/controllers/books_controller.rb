@@ -22,9 +22,9 @@ class BooksController < ApplicationController
   def show
     # Show all books if not searching
     if !params[:search].present?
-      @feed_items = Book.all.paginate(page: params[:page]).order('id ASC')
+      @feed_items = Book.all.paginate(page: params[:page]).order('id ASC').where("visible = 't'")
     else
-      @feed_items = Book.all.title(params[:search]).paginate(page: params[:page]).order('id ASC')
+      @feed_items = Book.all.title(params[:search]).paginate(page: params[:page]).order('id ASC').where("visible = 't'")
     end
     # Allow book creation when logged in
     if logged_in?
@@ -45,9 +45,14 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
+    @book.update_attributes(visibility_params)
   end
 
   private
+    def visibility_params
+      params.require(:book).permit(:visible)
+    end
+
     def trade_params
       params.permit(:user_id)
     end

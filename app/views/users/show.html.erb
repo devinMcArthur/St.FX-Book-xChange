@@ -7,7 +7,9 @@
       </h1>
     </section>
     <section class="book_form">
-      <%= render 'shared/book_form' %>
+      <% if logged_in? %>
+        <%= render 'shared/book_form' %>
+      <% end %>
     </section>
   </aside>
   <div class="col-md-8">
