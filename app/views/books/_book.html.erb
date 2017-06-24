@@ -12,12 +12,16 @@
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(book.created_at) %> ago.
+    <% if !book.asking_price.blank? %>
+      </br>Asking Price: <%= book.asking_price %>
+    <% end %>
     <% if current_user?(book.user) %>
-      <%= link_to "delete", book, method: :delete, data: { confirm: "You sure?" } %>
+      </br><%= link_to "delete", book, method: :delete, data: { confirm: "You sure?" } %>
       <%= form_for book do |f| %>
         <% if current_page?(user_path(@current_user)) %>
           <%= f.label :visible, "Book Visibility" %>
           <%= f.check_box :visible, { :onclick => "$(this.form).submit();" } %>
+        </br>Asking Price: <%= f.text_field :asking_price %>
         <% end %>
       <% end %>
     <% end %>

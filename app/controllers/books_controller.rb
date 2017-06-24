@@ -45,12 +45,12 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @book.update_attributes(visibility_params)
+    @book.update_attributes(update_params)
   end
 
   private
-    def visibility_params
-      params.require(:book).permit(:visible)
+    def update_params
+      params.require(:book).permit(:visible, :asking_price)
     end
 
     def trade_params

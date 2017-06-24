@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530210917) do
+ActiveRecord::Schema.define(version: 20170624204437) do
 
   create_table "books", force: :cascade do |t|
     t.text     "title"
     t.integer  "user_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.boolean  "visible",    default: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "visible",      default: true
+    t.string   "asking_price"
     t.index ["user_id", "created_at"], name: "index_books_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_books_on_user_id"
   end
