@@ -363,10 +363,37 @@ aside {
   float: right;
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
+/* Advertising Banners */
+
+.home-adbanner-container {
+    position: relative;
+    height: 60px;
+    width: 468px;
+    margin: 15px;
+    display: inline-block;
+    outline: black solid thick;
+}
+.home-adbanner-content {
+    margin: 5px;
+}
+
+.adbanner-container {
+    position: absolute;
+    height: 468px;
+    width: 80px;
+    margin: 15px;
+    display: inline-block;
+    outline: black solid thick;
+}
+.adbanner-content {
+    margin: 5px;
+}
+
+/* On smaller screens, where width is less than 420px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-width: 420px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+    .home-adbanner-container { height: 100%; width: 90%; }
 }
 
 /* miscellaneous */
