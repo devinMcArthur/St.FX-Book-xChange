@@ -1,3 +1,8 @@
+<div class="visible-xs home-adbanner-container" style="float: right;">
+  <div class="home-adbanner-content">
+    Your ad here
+  </div>
+</div>
 <% if logged_in? %>
   <div class="container-fluid">
     <aside class="visible-xs">
@@ -21,13 +26,13 @@
           <div class="pull-right col-xs-5 col-md-6">
             <%= render 'shared/search' %>
           </div>
-          <div class="adbanner-container" style="float: right;">
-            <div class="adbanner-content">
-              Your ad here
-            </div>
-          </div>
         </div>
         <%= render 'shared/feed' %>
+      </div>
+      <div class="hidden-xs col-md-2 adbanner-container" style="float: right;">
+        <div class="adbanner-content">
+          Your ad here
+        </div>
       </div>
     </div>
   </div>
@@ -42,5 +47,11 @@
     </div>
   </div>
   <%= render 'shared/feed' %>
+</div>
+<div class="hidden-xs col-md-2 adbanner-container" style="float: right;">
+  <div class="adbanner-content">
+    Your ad here
+  </div>
+</div>
 </div>
 <% end %>
