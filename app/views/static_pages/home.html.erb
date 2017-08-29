@@ -1,17 +1,22 @@
+<%= image_tag("website_logo.png", alt: "website logo", id: "homepage-website-logo") %>
 <div class="center jumbotron">
-  <h1>Welcome to St.FX Book xChange</h1>
+  <h1>Welcome to St.FX Book Exchange</h1>
 
   <h2>
     The host for the exchange of textbooks
-    for students of St.FX University
+    for the students of St.FX University
   </h2>
   <div class="home-button">
     <%= if !logged_in? then link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" end %>
   </div>
-  <%= link_to image_tag("stfx_logo.png", alt: "StFX logo", id: "stfx-logo"),
-              'https://www.stfx.ca/' %>
   </br>
+  <p>Checkout our selection of books</p>
   <div class="home-button">
     <%= link_to "Books", books_path, class: "btn btn-lg btn-primary" %>
+  </div>
+</br>
+  <p>Add your own books</p>
+  <div class="home-button">
+    <%= link_to "Get rid of my Textbooks", current_user, class: "btn btn-lg btn-primary" %>
   </div>
 </div>

@@ -44,8 +44,14 @@ textarea {
   margin-bottom: 15px;
 }
 
+#homepage-website-logo {
+  display: block;
+  margin: auto;
+  width: 80%
+}
+
 .home-button{
-  margin: 5px 5px 5px 5px;
+  margin: 0px 5px 5px 5px;
 }
 
 .alert-info {
@@ -88,9 +94,13 @@ p {
 
 /* header */
 
-#logo {
-  float: left;
-  margin-right: 10px;
+#header-logo {
+  display: block;
+  height: auto;
+  width: auto;
+  max-height: 35px;
+  max-width: 35px;
+  margin: 2px;
   float: left;
   font-size: 1.7em;
   color: white;
@@ -98,10 +108,6 @@ p {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
-  &:hover {
-    color: black;
-    text-decoration: none;
-  }
 }
 
 /* footer */
