@@ -1,7 +1,7 @@
 <%= javascript_include_tag "conversation_scroll", "data-turbolinks-track" => true %>
 <% if !mobile? %><div class="hidden-xs"><%= render "layouts/conversation_sidebar" %></div><% end %>
 <div class="row">
-  <div class="col-xs-5 col-md-4 col-lg-5 col-xl-6">
+  <div class="col-xs-6 col-md-4 col-lg-5 col-xl-6">
     <h1><%= Book.find_by(id: @conversation.book_id).title %></h1>
     <% if current_user.id == @conversation.recipient_id then %>
       <h3><%= User.find_by(id: @conversation.sender_id).name %></h3>
@@ -9,23 +9,28 @@
       <h3><%= User.find_by(id: @conversation.recipient_id).name %></h3>
     <% end %>
   </div>
-  <div class="col-xs-4 col-md-4 col-lg-4 col-xl-6">
+  <div class="col-xs-6 col-md-4 col-lg-4 col-xl-6">
     <div class="row conversation-info">
-      <div class="col-xs-8 col-md-4 col-lg-10 col-xl-6">
-        <% if current_user.id == Book.find(@conversation.book_id).user_id %>
-          <%= form_for(@conversation) do |f| %>
-            <%= render 'shared/error_messages', object: f.object %>
-            <div class="negotiated-price-field">
-              <%= f.text_field :negotiated_price, placeholder: " Negotiated Price " %>
-            </div>
-            <%= f.submit "Submit", class: "btn btn-primary" %>
+      <div class="col-xs-8 col-md-10 col-lg-10 col-xl-6" style="float:right;">
+        <span style="float:right;">
+          <% if current_user.id == Book.find(@conversation.book_id).user_id %>
+            <%= form_for(@conversation) do |f| %>
+              <%= render 'shared/error_messages', object: f.object %>
+              <div class="negotiated-price-field">
+                <%= f.text_field :negotiated_price, placeholder: " Negotiated Price " %>
+              </div>
+              <%= f.submit "Submit", class: "btn btn-primary" %>
+            <% end %>
+          <% else %>
+            <div><h2>Asking price: </h2><%= @conversation.negotiated_price %></div>
           <% end %>
-        <% else %>
-          <div>Asking price: <%= @conversation.negotiated_price %></div>
-        <% end %>
+        </span>
       </div>
-      <div class="col-xs-2 col-md-2 col-lg-3 col-xl-3">
-        <span>
+
+    </div>
+    <div class="row">
+      <div class="col-xs-8 col-md-10 col-lg-10 col-xl-6">
+        <span style="float:right;">
           <%= link_to "Trade", trade_books_path(@book, :book_id => @conversation.book_id, :user_id => @recipient),
                                class: "btn btn-primary", id: "trade-button",
                                data: { confirm: "You sure? Ensure the other person has received your book before trading!" } if current_user.id == Book.find(@conversation.book_id).user_id %>
