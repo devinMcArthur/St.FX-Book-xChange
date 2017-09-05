@@ -1,4 +1,5 @@
-<div class="ui segment">
+<div class="hidden-xs"><%= render "layouts/conversation_sidebar" %></div>
+<div class="ui segment", id="conversation-body">
  <h1>Exchanges</h1>
  <div class="center jumbotron">
    <% if @outwardInterests.exists? %>
@@ -51,7 +52,7 @@
           <span class="glyphicon glyphicon-envelope"></span>
         <% end %>
         <% book = Book.find_by(id: inwardInterest.book_id).title %>
-        <%= link_to recipient.name + ' - ' + book, conversation_messages_path(inwardInterest)%> 
+        <%= link_to recipient.name + ' - ' + book, conversation_messages_path(inwardInterest)%>
         <% if inwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
           (<%= inwardInterest.notifications.where(user_id: current_user.id, read: false).count %>)
         <% end %>

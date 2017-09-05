@@ -17,6 +17,6 @@
 </br>
   <p>Add your own books</p>
   <div class="home-button">
-    <%= link_to "Get rid of my Textbooks", current_user, class: "btn btn-lg btn-primary" %>
+    <%= link_to "Get rid of my Textbooks", if logged_in? then current_user else signup_path end, class: "btn btn-lg btn-primary" %>
   </div>
 </div>

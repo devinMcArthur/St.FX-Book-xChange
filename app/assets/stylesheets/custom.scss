@@ -65,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 6vh;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
@@ -334,7 +334,7 @@ aside {
 .conversation-body {
     padding: 10px;
     height: 60vh;
-    width: 80%;
+    width: 100%;
     background-color: #e7e5ff;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -369,10 +369,19 @@ aside {
   float: right;
 }
 
+/* Conversation misc */
+#trade-button {
+  margin-top: 10px;
+  float: left;
+}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+    .conversation-body {
+      width: 100%
+    }
 }
 
 /* miscellaneous */
