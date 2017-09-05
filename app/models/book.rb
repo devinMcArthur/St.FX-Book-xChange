@@ -10,4 +10,12 @@ class Book < ApplicationRecord
   def trade(int)
     update_attribute(:user_id, int)
   end
+
+  def self.search(search)
+    if search
+      find(:all, :title => ["title.downcase LIKE ?", "%#{title.downcase}%"])
+    else
+      find(:all)
+    end
+  end
 end
