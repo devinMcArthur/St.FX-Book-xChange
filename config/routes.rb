@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'demands/create'
+
+  get 'demands/destroy'
+
+  get 'demands/show'
+
   get 'notifications/link_through'
 
   get 'book_feed/show'
