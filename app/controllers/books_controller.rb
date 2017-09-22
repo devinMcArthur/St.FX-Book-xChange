@@ -29,6 +29,7 @@ class BooksController < ApplicationController
     # Allow book creation when logged in
     if logged_in?
       @book = current_user.books.build
+      @demand = current_user.demands.build
     end
   end
 

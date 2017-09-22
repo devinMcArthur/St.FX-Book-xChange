@@ -1,6 +1,4 @@
 class Book < ApplicationRecord
-
-  include PgSearch
   belongs_to :user, :foreign_key => :user_id
   has_many :conversations, dependent: :destroy
   default_scope -> { order(created_at: :desc) }

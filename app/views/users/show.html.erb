@@ -13,6 +13,19 @@
     </section>
   </aside>
   <div class="col-md-8">
+    <% if @user.demands.any? %>
+      <h3>Demands (<%= @user.demands.count %>)</h3>
+      <ol class="books">
+        <%= render @demands %>
+        <% if @demands.matches.any? %>
+          <ol class="books">
+            <%= @demands.match.title %>
+          </ol>
+          <%= will_paginate @demands.matches %>
+        <% end %>
+      </ol>
+      <%= will_paginate @demands %>
+    <% end %>
     <% if @user.books.any? %>
       <h3>Books (<%= @user.books.count %>)</h3>
       <ol class="books">
@@ -20,5 +33,6 @@
       </ol>
       <%= will_paginate @books %>
     <% end %>
+
   </div>
 </div>

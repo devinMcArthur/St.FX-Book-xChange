@@ -11,8 +11,10 @@ class UsersController < ApplicationController
     @user  = User.find(params[:id])
     if logged_in?
       @book  = current_user.books.build
+      @demand = current_user.demands.build
     end
     @books = @user.books.paginate(page: params[:page])
+    @demands = @user.demands.paginate(page: params[:page])
   end
 
   def new

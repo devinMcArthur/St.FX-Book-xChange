@@ -1,0 +1,6 @@
+<% if @demand_feed_items.any? %>
+  <ol class="books">
+    <%= render @demand_feed_items %>
+  </ol>
+  <%= will_paginate @demand_feed_items %>
+<% end %>
