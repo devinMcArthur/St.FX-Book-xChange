@@ -26,10 +26,11 @@ class BooksController < ApplicationController
     else
       @feed_items = Book.all.search(params[:search]).paginate(page: params[:page]).order('id ASC').where("visible = 't'")
     end
-    # Allow book creation when logged in
+    # Allow book creation and view of users demands when logged in
     if logged_in?
       @book = current_user.books.build
       @demand = current_user.demands.build
+      @demand_items = Demand.all.find_by(user_id: current_user.id)
     end
   end
 
