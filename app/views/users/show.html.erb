@@ -9,24 +9,26 @@
     <section class="book_form">
       <% if logged_in? %>
         <%= render 'shared/book_form' %>
+        <%= render 'shared/demand_form' %>
       <% end %>
     </section>
   </aside>
   <div class="col-md-8">
-    <% if @demand_items.any? %>
-      <h3>Demands (<%= @demand_items.count %>)</h3>
-      <ol class="books">
-        <%= render @demand_items %>
-        <% @user.demands.each? %>
-          <ol class="books">
-            <%= @demand_items.matches.param[:title] %>
-          </ol>
-          <%= will_paginate @demand_items.matches %>
+    <!-- Demand Loop -->
+    <% if @demands.any? %>
+      <h1>Demands (<%= @demands.count %>)</h1>
+      <% @demands.each do |t| %>
+        <h3><%= t.title %></h3>
+        <%= link_to "delete", t, method: :delete, data: { confirm: "You sure?" } %>
+        <!-- Match Loop -->
+        <% t.matches.each do |match| %>
+          <% book = Book.find(match.book_id).order('weight DESC') %>
+          <h2><%= book.title %></h2>Weight: <%= match.weight %> - Streak: <%= match.streak %>
         <% end %>
-      </ol>
-      <%= will_paginate @demand_items %>
+      <% end %>
     <% end %>
-    <-- Books Render ->
+
+    <!-- Books Render -->
     <% if @user.books.any? %>
       <h3>Books (<%= @user.books.count %>)</h3>
       <ol class="books">
@@ -34,6 +36,5 @@
       </ol>
       <%= will_paginate @books %>
     <% end %>
-
   </div>
 </div>

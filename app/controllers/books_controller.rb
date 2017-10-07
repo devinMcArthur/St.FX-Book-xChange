@@ -30,7 +30,6 @@ class BooksController < ApplicationController
     if logged_in?
       @book = current_user.books.build
       @demand = current_user.demands.build
-      @demand_items = Demand.all.find_by(user_id: current_user.id)
     end
   end
 

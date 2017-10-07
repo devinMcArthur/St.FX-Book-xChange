@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post   '/login'   => 'sessions#create'
   delete '/logout'  => 'sessions#destroy'
   get    '/books'   => 'books#show'
+  get    '/demands' => 'demands#show'
 
   resources :users
   resources :account_activations, only: [:edit]
