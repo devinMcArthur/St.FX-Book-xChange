@@ -21,9 +21,9 @@
         <h3><%= t.title %></h3>
         <%= link_to "delete", t, method: :delete, data: { confirm: "You sure?" } %>
         <!-- Match Loop -->
-        <% t.matches.each do |match| %>
-          <% book = Book.find(match.book_id).order('weight DESC') %>
-          <h2><%= book.title %></h2>Weight: <%= match.weight %> - Streak: <%= match.streak %>
+        <% t.matches.order('weight DESC').each do |match| %>
+          <% book = Book.find(match.book_id) %>
+          <h2><%= truncate(book.title.titleize, :length => 10, :seperator => ' ') %></h2>Weight: <%= match.weight %> - Streak: <%= match.streak %>
         <% end %>
       <% end %>
     <% end %>

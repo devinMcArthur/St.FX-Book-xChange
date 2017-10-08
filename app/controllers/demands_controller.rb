@@ -24,15 +24,14 @@ class DemandsController < ApplicationController
   end
 
   def show
-    find_matches
-    @demands = Demand.all.where(user_id: current_user.id).paginate(page: params[:page])
+    @demands = Demand.where(user_id: current_user.id).paginate(page: params[:page]).order('id DESC').all
     if logged_in?
       @demand = current_user.demands.build
     end
   end
 
   def feed
-
+    # May be used to try and create a Layout for indexing Demands
   end
 
   private
@@ -53,41 +52,48 @@ class DemandsController < ApplicationController
       @demands = Demand.all.where(user_id: current_user.id)
       @demands.each do |demand|
         # This statement is to reset the weights of books that have been matched before
-=begin
+
         if demand.matches.present?
           oldMatches = Match.where(demand_id: demand.id).all
           oldMatches.each do |oldM|
-            oldM.streak = 0
-            oldM.weight = 0
+            oldM.update_attributes(:streak => 0)
+            oldM.update_attributes(:weight => 1)
           end
         end
-=end
+
         titleArray = demand.title.split
+        # Loop through all words of the Demand Title with an index for each loop
         titleArray.each_with_index do |word, index|
           # Finds all matches
           bookArray = Book.where("title LIKE ?", "%#{word}%").all
+          # Loop through all book which matched the above 'word'
           bookArray.each do |book|
             # if match between book and demand already exists
-            if Match.where(demand_id: demand.id, book_id: book.id).exists?
-              matches = Match.where(demand_id: demand.id, book_id: book.id).all
-                matches.each do |match|
+            @existingMatches = Match.where("demand_id = ? AND book_id = ?", demand.id, book.id).all
+            if @existingMatches.any?
+                @existingMatches.each do |match|
                   if match.prev_match == index - 1
-                    # Streak is continuing
-                    match.streak += 1
-                    match.weight += match.streak
+                    # Existing Match with a streak
+                    tempInt = match.streak += 1
+                    match.update_attributes(:streak => tempInt)
+                    tempInt = match.weight + match.streak
+                    match.update_attributes(:weight => tempInt)
                   else
+                    # Existing match without a streak
                     match.streak = 1
-                    match.weight = match.streak
+                    match.weight += match.streak
                   end
+                  # Make prev_match = Index number of the searched word
                   match.prev_match = index
                 end
             else
-              match = Match.create(demand_id: demand.id, book_id: book.id,
+              Match.create(demand_id: demand.id, book_id: book.id,
                                    weight: 0, prev_match: index, streak: 1)
             end
-            #add_match(params[:id], book, index, streak, weight)
+
           end
         end
       end
+
     end
 end

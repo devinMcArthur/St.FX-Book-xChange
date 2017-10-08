@@ -220,6 +220,12 @@ input {
   margin-top: 5px;
 }
 
+.demand_form {
+  width: 15%;
+  position: fixed;
+  top: 15%;
+}
+
 #session_remember_me {
   width: auto;
   margin-left: 0;
@@ -373,6 +379,22 @@ aside {
 #trade-button {
   margin-top: 10px;
   float: left;
+}
+
+.match-scrollable {
+  height: auto;
+  width: auto;
+  background-color: $stfx_blue;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  .match-contents {
+    background-color: white;
+    padding: 5px;
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 5px;
+  }
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
