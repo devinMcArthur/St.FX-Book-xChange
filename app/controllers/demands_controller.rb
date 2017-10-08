@@ -32,6 +32,14 @@ class DemandsController < ApplicationController
 
   def feed
     # May be used to try and create a Layout for indexing Demands
+    if current_page?(user_path)
+      @demands = Demand.where(user_id: current_user.id).paginate(page: params[:page]).order('id DESC').all
+    elsif current_page?(demands_path)
+      @demands = Demand.all.order('id DESC')
+    end
+    if logged_in?
+      @demand = current_user.demands.build
+    end
   end
 
   private

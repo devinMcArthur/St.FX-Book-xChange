@@ -1,34 +1,14 @@
 <% provide(:title, "Demands") %>
 <div class="row">
   <aside class="col-md-3">
-    <section class="demand_form">
+    <section class="hidden-xs demand_form">
       <% if logged_in? %>
-
           <%= render 'shared/demand_form' %>
-    
       <% end %>
     </section>
   </aside>
   <div class="col-md-9">
-    <!-- Demand Loop -->
-    <h1>Your Demands (<%= @demands.count %>)</h1>
-    <% if @demands.any? %>
-      <% @demands.each do |t| %>
-        <div class="center jumbotron">
-          <h1><%= t.title.titleize %></h1>
-          <!-- Match Loop -->
-          <div class="match-scrollable">
-            <% t.matches.order("weight DESC").each do |match| %>
-            <!-- Want this to be in its own scrollable window -->
-            <div class="match-contents">
-              <% book = Book.find(match.book_id) %>
-              <h3><%= truncate(book.title.titleize, :length => 25, :seperator => ' ') %></h3>Weight: <%= match.weight %> - Streak: <%= match.streak %> ID: <%= book.id %>
-            </div>
-            <% end %>
-          </div>
-          <%= link_to "delete", t, method: :delete, data: { confirm: "You sure?" } %>
-        </div>
-      <% end %>
-    <% end %>
+    <% provide(:demand_feed_title, " Demands ") %>
+    <%= render "demands/feed" %>
   </div>
 </div>

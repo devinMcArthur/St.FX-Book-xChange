@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-3">
     <section class="user_info">
       <h1>
         <%= @user.name %>
@@ -13,21 +13,9 @@
       <% end %>
     </section>
   </aside>
-  <div class="col-md-8">
-    <!-- Demand Loop -->
-    <% if @demands.any? %>
-      <h1>Demands (<%= @demands.count %>)</h1>
-      <% @demands.each do |t| %>
-        <h3><%= t.title %></h3>
-        <%= link_to "delete", t, method: :delete, data: { confirm: "You sure?" } %>
-        <!-- Match Loop -->
-        <% t.matches.order('weight DESC').each do |match| %>
-          <% book = Book.find(match.book_id) %>
-          <h2><%= truncate(book.title.titleize, :length => 10, :seperator => ' ') %></h2>Weight: <%= match.weight %> - Streak: <%= match.streak %>
-        <% end %>
-      <% end %>
-    <% end %>
-
+  <div class="col-md-9">
+    <% provide(:demand_feed_title, "Your Demands ") %>
+    <%= render "demands/feed" %>
     <!-- Books Render -->
     <% if @user.books.any? %>
       <h3>Books (<%= @user.books.count %>)</h3>
