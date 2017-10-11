@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170624204437) do
+ActiveRecord::Schema.define(version: 20170922034722) do
 
   create_table "books", force: :cascade do |t|
     t.text     "title"
@@ -30,6 +30,23 @@ ActiveRecord::Schema.define(version: 20170624204437) do
     t.datetime "updated_at",       null: false
     t.integer  "book_id"
     t.string   "negotiated_price"
+  end
+
+  create_table "demands", force: :cascade do |t|
+    t.text     "title"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer  "demand_id"
+    t.integer  "book_id"
+    t.integer  "weight"
+    t.integer  "prev_match"
+    t.integer  "streak"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|

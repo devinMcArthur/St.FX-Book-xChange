@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def full_title(page_title = '')
-    base_title = "St.FX Book xChange"
+    base_title = "St.FX Exchange"
     if page_title.empty?
       base_title
     else

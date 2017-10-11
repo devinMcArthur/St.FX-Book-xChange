@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-3">
     <section class="user_info">
       <h1>
         <%= @user.name %>
@@ -9,10 +9,14 @@
     <section class="book_form">
       <% if logged_in? %>
         <%= render 'shared/book_form' %>
+        <%= render 'shared/demand_form' %>
       <% end %>
     </section>
   </aside>
-  <div class="col-md-8">
+  <div class="col-md-9">
+    <% provide(:demand_feed_title, "Your Demands ") %>
+    <%= render "demands/feed" %>
+    <!-- Books Render -->
     <% if @user.books.any? %>
       <h3>Books (<%= @user.books.count %>)</h3>
       <ol class="books">

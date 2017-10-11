@@ -1,0 +1,14 @@
+<% provide(:title, "Demands") %>
+<div class="row">
+  <aside class="col-md-3">
+    <section class="hidden-xs demand_form">
+      <% if logged_in? %>
+          <%= render 'shared/demand_form' %>
+      <% end %>
+    </section>
+  </aside>
+  <div class="col-md-9">
+    <% provide(:demand_feed_title, " Demands ") %>
+    <%= render "demands/feed" %>
+  </div>
+</div>

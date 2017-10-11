@@ -4,15 +4,17 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: [:destroy]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page]).order("created_at DESC")
   end
 
   def show
     @user  = User.find(params[:id])
     if logged_in?
       @book  = current_user.books.build
+      @demand = current_user.demands.build
     end
     @books = @user.books.paginate(page: params[:page])
+    @demands = @user.demands.paginate(page: params[:page])
   end
 
   def new

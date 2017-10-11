@@ -4,11 +4,16 @@ class MessagesController < ApplicationController
   end
 
   def index
-    @inwardInterests = Conversation.where(recipient_id: current_user.id)
-    @outwardInterests = Conversation.where(sender_id: current_user.id)
-    @messages = @conversation.messages
-    @conversation.notifications.where(:user_id => current_user.id).update_all read: true
-    @message = @conversation.messages.new
+    if is_involved_in(@conversation, current_user)
+      @inwardInterests = Conversation.where(recipient_id: current_user.id)
+      @outwardInterests = Conversation.where(sender_id: current_user.id)
+      @messages = @conversation.messages
+      @conversation.notifications.where(:user_id => current_user.id).update_all read: true
+      @message = @conversation.messages.new
+    else
+      redirect_to root_url
+      flash[:danger] = "You're not apart of that conversation"
+    end
   end
 
   def new
@@ -34,5 +39,10 @@ class MessagesController < ApplicationController
                           user_id: conversation.sender_id == current_user.id ? conversation.recipient_id : conversation.sender_id,
                           conversation_id: conversation.id,
                           message_id: message.id)
+    end
+
+    def is_involved_in(conversation, user)
+      return true if user.id == conversation.recipient_id ||
+                      user.id == conversation.sender_id
     end
 end

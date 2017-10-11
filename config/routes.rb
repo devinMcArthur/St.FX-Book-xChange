@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'demands/create'
+
+  get 'demands/destroy'
+
+  get 'demands/show'
+
   get 'notifications/link_through'
 
   get 'book_feed/show'
@@ -18,11 +24,14 @@ Rails.application.routes.draw do
   post   '/login'   => 'sessions#create'
   delete '/logout'  => 'sessions#destroy'
   get    '/books'   => 'books#show'
+  get    '/demands' => 'demands#show'
+
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :books,               only: [:create, :destroy, :edit, :update]
   resources :conversations,       only: [:index, :create, :destroy]
+  resources :demands,             only: [:create, :show, :destroy]
   resources :conversations do
     resources :messages, only: [:index, :create, :destroy]
   end

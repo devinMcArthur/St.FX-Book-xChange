@@ -1,0 +1,4 @@
+<h1><%= demand.title %></h1>
+<% if current_user?(demand.user) %>
+  </br><%= link_to "delete", demand, method: :delete, data: { confirm: "You sure?" } %>
+<% end %>
