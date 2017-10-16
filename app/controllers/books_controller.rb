@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy, :trade]
   before_action :correct_user,   only: [:destroy]
+  after_action  :find_matches,   only: [:create]
 
   def create
     @book = current_user.books.build(book_params)
