@@ -1,14 +1,44 @@
 <% provide(:title, "Demands") %>
-<div class="row">
-  <aside class="col-md-3">
-    <section class="hidden-xs demand_form">
-      <% if logged_in? %>
-          <%= render 'shared/demand_form' %>
-      <% end %>
-    </section>
-  </aside>
-  <div class="col-md-9">
-    <% provide(:demand_feed_title, " Demands ") %>
-    <%= render "demands/feed" %>
+<% if logged_in? %>
+  <div class="container-fluid">
+    <aside class="visible-xs" style="position: static;">
+      <%= render 'shared/demand_form' %>
+    </aside>
+    <div class="row">
+      <aside class="hidden-xs col-sm-3 col-md-3 col-lg-3" style="float: left;">
+          <section class="user_info" style="position: fixed;">
+            <%= render 'shared/user_info' %>
+          </section>
+          <section class="demand_form" style="position: fixed;">
+            <%= render 'shared/demand_form' %>
+          </section>
+      </aside>
+
+      <div class="col-xs-16 col-sm-8 col-md-8 col-lg-9">
+        <div class="row">
+          <!--
+          <div class="pull-right col-xs-5 col-md-6">
+            <%= render 'shared/search' %>
+          </div>
+          -->
+        </div>
+        <% provide(:demand_feed_title, "All Demands ") %>
+        <%= render 'demands/feed' %>
+      </div>
+    </div>
+  </div>
+<% else %>
+<div class="container-fluid">
+  <div class="col-xs-16 col-sm-8 col-md-8 col-lg-8">
+    <div class="row">
+      <!--
+      <div class="pull-right col-xs-5 col-md-6">
+        <%= render 'shared/search' %>
+      </div>
+      -->
+    </div>
+    <% provide(:demand_feed_title, "All Demands ") %>
+    <%= render 'demands/feed' %>
   </div>
 </div>
+<% end %>

@@ -1,17 +1,24 @@
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="col-md-3">
-    <section class="user_info">
+    <section class="user_info hidden-xs" style="position: fixed;">
       <h1>
         <%= @user.name %>
       </h1>
     </section>
-    <section class="book_form">
-      <% if logged_in? %>
+    <% if logged_in? %>
+      <section class="book_form hidden-xs" style="position: fixed;">
         <%= render 'shared/book_form' %>
         <%= render 'shared/demand_form' %>
-      <% end %>
-    </section>
+      </section>
+      <section class="visible-xs">
+        <h1>
+          <%= @user.name %>
+        </h1>
+        <%= render 'shared/book_form' %>
+        <%= render 'shared/demand_form' %>
+      </section>
+    <% end %>
   </aside>
   <div class="col-md-9">
     <% provide(:demand_feed_title, "Your Demands ") %>

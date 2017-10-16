@@ -1,5 +1,7 @@
+<% if !yield(:demand_feed_title).empty? %>
+  <h1><%= yield(:demand_feed_title) %> (<%= @demands.count %>)</h1>
+<% end %>
 <!-- Demand Loop -->
-<h1><%= yield(:demand_feed_title) %> (<%= @demands.count %>)</h1>
 <% if @demands.any? %>
   <% @demands.each do |t| %>
     <div class="center jumbotron">
