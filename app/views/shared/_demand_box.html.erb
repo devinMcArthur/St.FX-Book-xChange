@@ -1,0 +1,17 @@
+<div class="center jumbotron">
+  <h1><%= @demands.title.titleize %></h1>
+  <!-- Match Loop -->
+  <div class="match-scrollable">
+    <% @demands.matches.order("weight DESC").each do |match| %>
+    <!-- Horizontal Scroll Window -->
+    <div class="match-contents">
+      <% book = Book.find(match.book_id) %>
+      <h3><%= truncate(book.title.titleize, :length => 25, :seperator => ' ') %></h3>Weight: <%= match.weight %> - Streak: <%= match.streak %> ID: <%= book.id %>
+    </div>
+    <% end %>
+  </div>
+  </br>
+  <% if !current_user.nil? && @demands.user_id = current_user.id %>
+  <%= link_to "delete", @demands, method: :delete, data: { confirm: "You sure?" } %>
+  <% end %>
+</div>

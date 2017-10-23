@@ -1,19 +1,24 @@
 class DemandsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: [:destroy]
-  after_action  :find_matches,   only: [:create]
+  before_action :correct_user,     only: [:destroy]
+  after_action  :find_matches,     only: [:create]
 
   # URL Helper is included to allow for 'current_page?()'
   include ActionView::Helpers::UrlHelper
 
   def create
-    @demand = current_user.demands.build(demand_params)
-    if @demand.save
-      flash[:success] = "Your demand has been requested!"
-      redirect_to demands_path
+    if current_user.nil? || URI(request.referer).path == '/'
+      temporary_create
+      redirect_to(root_url)
     else
-      render root_url
+      @demand = current_user.demands.build(demand_params)
+      if @demand.save
+        flash[:success] = "Your demand has been requested!"
+        redirect_to demands_path
+      else
+        render root_url
+      end
     end
+
   end
 
   def destroy
@@ -30,7 +35,6 @@ class DemandsController < ApplicationController
   end
 
   def feed
-    # May be used to try and create a Layout for indexing Demands
     if current_page?(user_path)
       @demands = Demand.where(user_id: current_user.id).paginate(page: params[:page]).order('id DESC').all
     elsif current_page?(demands_path)
@@ -53,5 +57,12 @@ class DemandsController < ApplicationController
     def correct_user
       @demand = current_user.demands.find_by(id: params[:id])
       redirect_to users_path if @demand.nil?
+    end
+
+    def temporary_create
+      fakeUser = User.first
+      @demand = fakeUser.demands.build(demand_params)
+      @demand.temporary = true
+      @demand.save
     end
 end

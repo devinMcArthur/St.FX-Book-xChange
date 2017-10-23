@@ -1,10 +1,6 @@
 <%= image_tag("website_logo.png", alt: "website logo", id: "homepage-website-logo") %>
 <div class="center jumbotron">
-  <h1>Add a temporary Demand Box here so first time users can check if the site has the book they need</h1>
-</div>
-<div class="center jumbotron">
   <h1>Welcome to St.FX Book Exchange</h1>
-
   <h2>
     The host for the exchange of textbooks
     for the students of St.FX University
@@ -12,6 +8,18 @@
   <div class="home-button">
     <%= if !logged_in? then link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" end %>
   </div>
+
+  <h3>See if we have the Book you need</h3>
+  <%= form_for(@demand) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.text_field :title, placeholder: "  What book do you need?" %>
+    </div>
+  <% end %>
+  <% if !@demands.nil? %>
+    <%= render 'shared/demand_box' %>
+  <% end %>
+
   </br>
   <p>Checkout our selection of books</p>
   <div class="home-button">
