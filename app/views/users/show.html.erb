@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-3">
+  <aside class="col-md-3 col-sm-3">
     <section class="user_info hidden-xs" style="position: fixed;">
       <h1>
         <%= @user.name %>
@@ -20,7 +20,7 @@
       </section>
     <% end %>
   </aside>
-  <div class="col-md-9">
+  <div class="col-md-9 col-sm-9">
     <% provide(:demand_feed_title, "Your Demands ") %>
     <%= render "demands/feed" %>
     <!-- Books Render -->
