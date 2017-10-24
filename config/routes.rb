@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   delete '/logout'  => 'sessions#destroy'
   get    '/books'   => 'books#show'
   get    '/demands' => 'demands#show'
+  get    '/prompt'  => 'users#prompt'
 
   resources :users
   resources :account_activations, only: [:edit]

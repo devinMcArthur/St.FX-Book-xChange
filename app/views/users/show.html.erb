@@ -21,6 +21,7 @@
     <% end %>
   </aside>
   <div class="col-md-9 col-sm-9">
+    <%= link_to "Prompt", prompt_path %>
     <% provide(:demand_feed_title, "Your Demands ") %>
     <%= render "demands/feed" %>
     <!-- Books Render -->

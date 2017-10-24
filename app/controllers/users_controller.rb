@@ -55,9 +55,22 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def prompt
+    @book = current_user.books.build
+    @demand = current_user.demands.build
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+    end
+
+    def book_params
+      params.require(:book).permit(:title)
+    end
+
+    def demand_params
+      params.require(:demand).permit(:title)
     end
 
     # Confirms the correct user

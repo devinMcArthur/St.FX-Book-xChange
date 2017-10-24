@@ -9,6 +9,9 @@
     <%= if !logged_in? then link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" end %>
   </div>
 
+  <% if !@demands.nil? %>
+    <%= render 'shared/demand_box' %>
+  <% end %>
   <h3>See if we have the Book you need</h3>
   <%= form_for(@demand) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
@@ -16,10 +19,6 @@
       <%= f.text_field :title, placeholder: "  What book do you need?" %>
     </div>
   <% end %>
-  <% if !@demands.nil? %>
-    <%= render 'shared/demand_box' %>
-  <% end %>
-
   </br>
   <p>Checkout our selection of books</p>
   <div class="home-button">
