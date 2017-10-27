@@ -3,8 +3,8 @@ class ConversationsController < ApplicationController
 
   def index
     @users = User.all
-    @inwardInterests = Conversation.where(recipient_id: current_user.id)
-    @outwardInterests = Conversation.where(sender_id: current_user.id)
+    @inwardInterests = Conversation.where(recipient_id: current_user.id).order('id DESC')
+    @outwardInterests = Conversation.where(sender_id: current_user.id).order('id DESC')
     if !mobile?
       @responsiveStyling = "text-align: left;"
     end

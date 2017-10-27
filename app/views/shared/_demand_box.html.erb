@@ -6,7 +6,12 @@
     <!-- Horizontal Scroll Window -->
     <div class="match-contents">
       <% book = Book.find(match.book_id) %>
-      <h3><%= truncate(book.title.titleize, :length => 25, :seperator => ' ') %></h3>Weight: <%= match.weight %> - Streak: <%= match.streak %> ID: <%= book.id %>
+      <h3><%= link_to truncate(book.title.titleize, :length => 25, :seperator => ' '),
+      conversations_path(sender_id: current_user.id,
+                         recipient_id: book.user_id,
+                         book_id: book.id),
+                         method: 'post' %></h3>
+      Weight: <%= match.weight %> - Streak: <%= match.streak %> ID: <%= book.id %>
     </div>
     <% end %>
   </div>

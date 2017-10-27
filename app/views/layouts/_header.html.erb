@@ -17,7 +17,7 @@
         <li><%= link_to "Demands", demands_path, id: "nav-link" %></li>
         <% if logged_in? %>
           <li>
-            <%= link_to current_user.notifications.where(read: false).exists? ? "Exchanges (" + current_user.notifications.where(read: false).count.to_s + ")" : "Exchanges", conversations_path, id: "nav-link" %>
+            <%= link_to current_user.notifications.where(read: false).exists? ? "Messages (" + current_user.notifications.where(read: false).count.to_s + ")" : "Messages", conversations_path, id: "nav-link" %>
           </li>
       </ul>
       <ul class="nav navbar-nav navbar-right navbar-dark">
