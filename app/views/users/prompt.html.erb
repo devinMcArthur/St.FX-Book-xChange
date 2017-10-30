@@ -1,4 +1,18 @@
 <% provide(:title, "Prompt") %>
 <div class="center jumbotron">
   <h1>Hi <%= current_user.name %></h1>
+  <h3>Enter Textbooks that you need<h3>
+  <%= form_for(@book) do |f| %>
+    <%= render 'book_prompt', f: f %>
+  <% end %>
+
+  <br />
+
+  <%= form_for(@demand) do |d| %>
+    <%= render 'shared/error_messages', object: d.object %>
+    <div class="field">
+      <%= d.text_field :title, placeholder: "  Enter Book request" %>
+    </div>
+    <%= d.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
 </div>

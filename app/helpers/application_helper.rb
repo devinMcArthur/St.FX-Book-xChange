@@ -9,4 +9,9 @@ module ApplicationHelper
     end
   end
 
+  def link_to_add_fields(name, f)
+    render 'book_prompt', f: f
+    link_to(name, '#', class: "add_fields")
+  end
+
 end
