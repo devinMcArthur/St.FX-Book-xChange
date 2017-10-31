@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
   #
   def account_activation(user)
     @user = user
-    mail to: user.email, subject: "StFXchange: Account Activation"
+    mail to: user.email, subject: "StFX Exchange: Account Activation"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -17,6 +17,19 @@ class UserMailer < ApplicationMailer
   #
   def password_reset(user)
     @user = user
-    mail to: user.email, subject: "StFXchange: Password reset"
+    mail to: user.email, subject: "StFX Exchange: Password reset"
+  end
+
+  # Subject can be set in your I18n file at config/locales/en.yml
+  # with the following lookup:
+  #
+  #   en.user_mailer.book_interest.subject
+  #
+  def book_interest(sender, recipient, book, conversation)
+    @sender = sender
+    @recipient = recipient
+    @book = book
+    @conversation = conversation
+    mail to: recipient.email, subject: "StFX Exchange: Book Interest"
   end
 end

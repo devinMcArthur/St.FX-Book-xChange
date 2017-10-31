@@ -26,6 +26,10 @@ class MessagesController < ApplicationController
       create_notification @conversation, @message
       redirect_to conversation_messages_path(@conversation)
       flash[:success] = "Message sent"
+      if @conversation.messages.first == @message
+        flash[:success] = "Email sent"
+        send_interest_email(current_user, @conversation.recipient_id, @conversation)
+      end
     end
   end
 

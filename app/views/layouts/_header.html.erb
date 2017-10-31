@@ -14,7 +14,8 @@
       <ul class="nav navbar-nav navbar-dark">
         <li><%= link_to "Home",    root_path,  id: "nav-link" %></li>
         <li><%= link_to "Books",   books_path, id: "nav-link" %></li>
-        <li><%= link_to "Demands", demands_path, id: "nav-link" %></li>
+        <!-- Remove Demand Link until Conversations can be created via Demands
+        <li><%= link_to "Demands", demands_path, id: "nav-link" %></li>-->
         <% if logged_in? %>
           <li>
             <%= link_to current_user.notifications.where(read: false).exists? ? "Messages (" + current_user.notifications.where(read: false).count.to_s + ")" : "Messages", conversations_path, id: "nav-link" %>

@@ -16,4 +16,13 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.password_reset(user)
   end
 
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/book_interest
+  def book_interest
+    sender = User.first
+    recipient = User.last
+    book = Book.last
+    conversation = Conversation.first
+    UserMailer.book_interest(sender, recipient, book, conversation)
+  end
+
 end

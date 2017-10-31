@@ -1,0 +1,8 @@
+Hi <%= @recipient.name %>,<br/><br/>
+
+<%= @sender.name.titleize %> seems to be interested in your book:
+<h2>"<%= @book.title %>"</h2>
+
+Follow the link below to begin chatting!
+
+<br/><%= link_to "Begin Chatting!", conversation_messages_path(@conversation) %>

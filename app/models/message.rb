@@ -9,6 +9,10 @@ class Message < ActiveRecord::Base
     created_at.strftime("%m/%d/%y at %l:%M %p")
   end
 
+  def send_interest_email
+    UserMailer.
+  end
+
   private
     def send_notification(message)
       message.notifications.create(user: message.reipient)
