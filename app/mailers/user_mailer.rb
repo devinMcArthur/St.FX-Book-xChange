@@ -30,6 +30,16 @@ class UserMailer < ApplicationMailer
     @recipient = recipient
     @book = book
     @conversation = conversation
-    mail to: recipient.email, subject: "StFX Exchange: Book Interest"
+    mail to: recipient.email, subject: "StFX Exchange: Book Interest!"
+  end
+
+  # Subject can be set in your I18n file at config/locales/en.yml
+  # with the following lookup:
+  #
+  #   en.user_mailer.book_prompt.subject
+  #
+  def book_prompt(user)
+    @user = user
+    mail to: user.email, subject: "StFX Exchange: Upload your used Textbooks!"
   end
 end

@@ -380,10 +380,18 @@ aside {
   float: left;
 }
 
+.demand-box {
+  border: 3px groove rgba(43, 95, 155, 0.7);
+  border-radius: 10px;
+  border-spacing: 15px;
+  padding: 0px 5px 0px 5px;
+  margin: 2px;
+}
+
 .match-scrollable {
   height: auto;
   width: auto;
-  background-color: $stfx_blue;
+  background-color: white;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;

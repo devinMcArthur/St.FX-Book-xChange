@@ -1,1 +1,8 @@
-HI
+Hi <%= @recipient.name %>,
+
+<%= @sender.name.titleize %> seems to be interested in your book:
+"<%= @book.title %>"
+
+Follow the link below to begin chatting!
+
+<%= conversation_messages_url @conversation %>

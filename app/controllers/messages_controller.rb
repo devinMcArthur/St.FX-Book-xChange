@@ -25,10 +25,8 @@ class MessagesController < ApplicationController
     if @message.save
       create_notification @conversation, @message
       redirect_to conversation_messages_path(@conversation)
-      flash[:success] = "Message sent"
       if @conversation.messages.first == @message
-        flash[:success] = "Email sent"
-        send_interest_email(current_user, @conversation.recipient_id, conversation_messages_path(@conversation))
+        send_interest_email(current_user, User.find(@conversation.recipient_id), @conversation.book, conversation_messages_path(@conversation))
       end
     end
   end
@@ -50,7 +48,7 @@ class MessagesController < ApplicationController
                       user.id == conversation.sender_id
     end
 
-    def send_interest_email
+    def send_interest_email(sender, recipient, book, conversation)
       UserMailer.book_interest(sender, recipient, book, conversation).deliver_now
     end
 end

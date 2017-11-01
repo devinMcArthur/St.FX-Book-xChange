@@ -1,7 +1,14 @@
+<% if current_page?(root_url) %>
+<div class="demand-box">
+<% else %>
 <div class="center jumbotron">
-  <h1><%= @demands.title.titleize %></h1>
+<% end %>
+  <h1>Matches for "<%= @demands.title.titleize %>"</h1>
   <!-- Match Loop -->
   <div class="match-scrollable">
+    <% if @demands.matches.blank? %>
+      <h3>Sorry, we couldn't find any matches, try again with different keywords</h3>
+    <% end %>
     <% @demands.matches.order("weight DESC").each do |match| %>
     <!-- Horizontal Scroll Window -->
     <div class="match-contents">
@@ -15,6 +22,7 @@
       <% else %>
         <h3><%= book.title.titleize %></h3>
       <% end %>
+       - <%= User.find(book.user_id).name %></br>
       <% if Rails.env.development? %>
         Weight: <%= match.weight %> - Streak: <%= match.streak %> ID: <%= book.id %>
       <% end %>
@@ -22,7 +30,7 @@
     <% end %>
   </div>
   </br>
-  <% if !current_user.nil? && @demands.user_id = current_user.id %>
+  <% if !current_user.nil? && @demands.user_id = current_user.id && !current_page?(root_url) %>
   <%= link_to "delete", @demands, method: :delete, data: { confirm: "You sure?" } %>
   <% end %>
 </div>

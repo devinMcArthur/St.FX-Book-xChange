@@ -25,4 +25,9 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.book_interest(sender, recipient, book, conversation)
   end
 
+  def book_prompt
+    user = User.first
+    UserMailer.book_prompt(user)
+  end
+
 end
