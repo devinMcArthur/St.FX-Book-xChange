@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
       flash[:success] = "Message sent"
       if @conversation.messages.first == @message
         flash[:success] = "Email sent"
-        send_interest_email(current_user, @conversation.recipient_id, @conversation)
+        send_interest_email(current_user, @conversation.recipient_id, conversation_messages_path(@conversation))
       end
     end
   end
@@ -48,5 +48,9 @@ class MessagesController < ApplicationController
     def is_involved_in(conversation, user)
       return true if user.id == conversation.recipient_id ||
                       user.id == conversation.sender_id
+    end
+
+    def send_interest_email
+      UserMailer.book_interest(sender, recipient, book, conversation).deliver_now
     end
 end

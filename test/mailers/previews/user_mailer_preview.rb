@@ -19,9 +19,9 @@ class UserMailerPreview < ActionMailer::Preview
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/book_interest
   def book_interest
     sender = User.first
-    recipient = User.last
+    recipient = User.second
     book = Book.last
-    conversation = Conversation.first
+    conversation = Rails.application.routes.url_helpers.conversation_messages_path(Conversation.first)
     UserMailer.book_interest(sender, recipient, book, conversation)
   end
 

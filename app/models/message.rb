@@ -10,11 +10,12 @@ class Message < ActiveRecord::Base
   end
 
   def send_interest_email
-    UserMailer.
+    UserMailer.book_interest(self, recipient, book, conversation).deliver_now
   end
 
   private
     def send_notification(message)
       message.notifications.create(user: message.reipient)
     end
+
 end

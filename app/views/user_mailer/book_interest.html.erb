@@ -5,4 +5,6 @@ Hi <%= @recipient.name %>,<br/><br/>
 
 Follow the link below to begin chatting!
 
-<br/><%= link_to "Begin Chatting!", conversation_messages_path(@conversation) %>
+<div class="home-button">
+  <%= link_to "Begin Chatting!", @conversation, class: "btn btn-lg btn-primary" %>
+</div>
