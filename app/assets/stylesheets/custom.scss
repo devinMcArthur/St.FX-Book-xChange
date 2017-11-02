@@ -113,7 +113,10 @@ p {
 /* footer */
 
 footer {
-  margin-top: 45px;
+  position: absolute;
+  position: center;
+  bottom: 0;
+  margin-bottom: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
@@ -223,6 +226,14 @@ input {
 .demand_form {
   width: 15%;
   top: 15%;
+}
+
+.demand-form {
+  font-size: inherit;
+}
+
+.book-form {
+  font-size: inherit;
 }
 
 #session_remember_me {

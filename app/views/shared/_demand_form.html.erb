@@ -1,8 +1,10 @@
-<h4>Demand a Textbook</h4>
-<%= form_for(@demand) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_field :title, placeholder: "  What book do you need?" %>
-  </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
-<% end %>
+<div class="demand-form">
+  <h4>Request a Textbook</h4>
+  <%= form_for(@demand) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.text_field :title, placeholder: " Title: keywords", class: "demand-form-content" %>
+    </div>
+    <%= f.submit "Post", class: "btn btn-primary" %>
+  <% end %>
+</div>

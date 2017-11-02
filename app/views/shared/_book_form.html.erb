@@ -1,8 +1,10 @@
-<h4>Add your Textbook</h4>
-<%= form_for(@book) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_field :title, placeholder: " 'Book Title: Course name'" %>
-  </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
-<% end %>
+<div class="book-form">
+  <h4>Add your Textbook</h4>
+  <%= form_for(@book) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.text_field :title, placeholder: " Book Title: Course name", class: "book-form-contents" %>
+    </div>
+    <%= f.submit "Post", class: "btn btn-primary" %>
+  <% end %>
+</div>

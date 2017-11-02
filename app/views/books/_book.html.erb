@@ -1,5 +1,11 @@
 <li id="book-<%= book.id %>">
-  <span class="user"><%= link_to book.user.name, book.user %></span>
+  <span class="user">
+    <% if book.user.nil? %>
+      <%= link_to book.user.name, book.user %>
+    <% else %>
+      <%= link_to "This book is an Orphan", root_url %>
+    <% end %>
+  </span>
   <span class="title">
     <% if logged_in? && !current_user?(book.user) %>
       <%= link_to book.title, conversations_path(sender_id: current_user.id,

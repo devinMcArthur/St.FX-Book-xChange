@@ -1,4 +1,4 @@
-<footer class='footer'>
+<footer>
   <div class='container'>
     <small>
       <p>Beta Build 0.7</p>
@@ -17,4 +17,5 @@
     ga('create', 'UA-97177636-1', 'auto');
     ga('send', 'pageview');
   </script>
+  <%= debug(params) if Rails.env.development? %>
 </footer>
