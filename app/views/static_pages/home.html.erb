@@ -1,5 +1,17 @@
-<%= image_tag("website_logo.png", alt: "website logo", id: "homepage-website-logo") %>
 <div class="center jumbotron">
+  <%= image_tag("website_logo.png", alt: "website logo", id: "homepage-website-logo") %>
+  <% if !@demands.nil? %>
+    <div class="demand-box">
+      <%= render 'shared/demand_box' %>
+      <h3>Check for another book!</h3>
+      <%= form_for(@demand) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="field">
+          <%= f.text_field :title, placeholder: "  What book do you need?" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
   <h1>Welcome to St.FX Book Exchange</h1>
   <h2>
     The host for the exchange of textbooks
@@ -9,23 +21,19 @@
     <%= if !logged_in? then link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" end %>
   </div>
 
-  <% if !@demands.nil? %>
-    <%= render 'shared/demand_box' %>
-  <% end %>
-  <h3>See if we have the Book you need</h3>
-  <%= form_for(@demand) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <div class="field">
-      <%= f.text_field :title, placeholder: "  What book do you need?" %>
+  <% if @demands.nil? %>
+    <div class="demand-box">
+      <h3>See if we have the Book you need</h3>
+      <%= form_for(@demand) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="field">
+          <%= f.text_field :title, placeholder: "  What book do you need?" %>
+        </div>
+      <% end %>
     </div>
   <% end %>
-  </br>
-  <p>Checkout our selection of books</p>
-  <div class="home-button">
-    <%= link_to "Books", books_path, class: "btn btn-lg btn-primary" %>
-  </div>
-</br>
-  <p>Add your own books</p>
+
+  <p>Or add your own used books</p>
   <div class="home-button">
     <%= link_to "Get rid of my Textbooks", if logged_in? then current_user else signup_path end, class: "btn btn-lg btn-primary" %>
   </div>
