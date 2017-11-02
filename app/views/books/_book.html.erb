@@ -1,6 +1,6 @@
 <li id="book-<%= book.id %>">
   <span class="user">
-    <% if book.user.nil? %>
+    <% if !book.user.nil? %>
       <%= link_to book.user.name, book.user %>
     <% else %>
       <%= link_to "This book is an Orphan", root_url %>
