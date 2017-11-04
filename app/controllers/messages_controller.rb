@@ -26,7 +26,7 @@ class MessagesController < ApplicationController
       create_notification @conversation, @message
       redirect_to conversation_messages_path(@conversation)
       if @conversation.messages.first == @message
-        send_interest_email(current_user, User.find(@conversation.recipient_id), @conversation.book, conversation_messages_path(@conversation))
+        send_interest_email(current_user, User.find(@conversation.recipient_id), @conversation.book, Rails.application.routes.url_helpers.conversation_messages_path(@conversation))
       end
     end
   end

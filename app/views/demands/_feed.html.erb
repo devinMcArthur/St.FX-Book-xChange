@@ -1,4 +1,4 @@
-<% if !yield(:demand_feed_title).empty? %>
+<% if !yield(:demand_feed_title).empty? && @demands.any? %>
   <h1><%= yield(:demand_feed_title) %> (<%= @demands.count %>)</h1>
 <% end %>
 <!-- Demand Loop -->
