@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
       # Loop through all words of the Demand Title with an index for each loop
       titleArray.each_with_index do |word, index|
         # Finds all matches
-        bookArray = Book.where("title LIKE ?", "%#{word}%").all
+        word.downcase
+        bookArray = Book.where("lower(title) LIKE ?", "%#{word}%").all
         # Loop through all book which matched the above 'word'
         bookArray.each do |book|
           # if match between book and demand already exists
