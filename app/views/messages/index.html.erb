@@ -1,12 +1,30 @@
 <%= javascript_include_tag "conversation_scroll", "data-turbolinks-track" => true %>
-<% if !mobile? %><div class="hidden-xs"><%= render "layouts/conversation_sidebar" %></div><% end %>
+<% if !mobile? %>
+  <div class="hidden-xs">
+    <%= render "layouts/conversation_sidebar" %>
+  </div>
+<% end %>
 <div class="row">
   <div class="col-xs-6 col-md-4 col-lg-5 col-xl-6">
-    <h1><%= Book.find_by(id: @conversation.book_id).title %></h1>
-    <% if current_user.id == @conversation.recipient_id then %>
-      <h3><%= User.find_by(id: @conversation.sender_id).name %></h3>
+    <% if !mobile? %>
+      <h1 style="font-size: 2.4vw;">
     <% else %>
-      <h3><%= User.find_by(id: @conversation.recipient_id).name %></h3>
+      <h1 style="font-size: 5vw;">
+    <% end %>
+        <%= Book.find_by(id: @conversation.book_id).title %>
+      </h1>
+    <% if current_user.id == @conversation.recipient_id then %>
+      <% if !mobile? %>
+        <h3 style="font-size: 1.5vw;"><%= User.find_by(id: @conversation.sender_id).name %></h3>
+      <% else %>
+        <h3 style="font-size: 4vw;"><%= User.find_by(id: @conversation.sender_id).name %></h3>
+      <% end %>
+    <% else %>
+      <% if !mobile? %>
+        <h3 style="font-size: 1.5vw;"><%= User.find_by(id: @conversation.recipient_id).name %></h3>
+      <% else %>
+        <h3 style="font-size: 4vw;"><%= User.find_by(id: @conversation.recipient_id).name %></h3>
+      <% end %>
     <% end %>
   </div>
   <div class="col-xs-6 col-md-4 col-lg-4 col-xl-6">
@@ -22,7 +40,9 @@
               <%= f.submit "Submit", class: "btn btn-primary" %>
             <% end %>
           <% else %>
-            <div><h2>Asking price: </h2><%= @conversation.negotiated_price %></div>
+            <% if !@conversation.negotiated_price.nil? %>
+              <div><h2>Asking price: </h2><%= @conversation.negotiated_price %></div>
+            <% end %>
           <% end %>
         </span>
       </div>

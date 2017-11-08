@@ -6,7 +6,7 @@
         <%= @user.name %>
       </h1>
     </section>
-    <% if logged_in? %>
+    <% if logged_in? && current_user == @user %>
       <section class="book_form hidden-xs" style="position: fixed;">
         <%= render 'shared/book_form' %>
         <%= render 'shared/demand_form' %>
@@ -15,8 +15,10 @@
         <h1>
           <%= @user.name %>
         </h1>
-        <%= render 'shared/book_form' %>
-        <%= render 'shared/demand_form' %>
+        <% if current_user == @user && logged_in? %>
+          <%= render 'shared/book_form' %>
+          <%= render 'shared/demand_form' %>
+        <% end %>
       </section>
     <% end %>
   </aside>
