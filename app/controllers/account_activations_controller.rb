@@ -7,7 +7,7 @@ class AccountActivationsController < ApplicationController
       log_in user
       flash[:success] = "Account activated!"
       user.delay_for(2.days).send_reminder_email
-      redirect_to user
+      redirect_to root_url
     else
       flash[:danger] = "Invalid activation link"
       redirect_to root_url
