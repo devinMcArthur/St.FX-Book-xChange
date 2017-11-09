@@ -13,6 +13,6 @@ class Book < ApplicationRecord
 
   def self.search(search)
     search.downcase
-    where("lower(title) LIKE ?", "%#{search.downcase}%")
+    where("lower(title) LIKE ?", "%#{search}%")
   end
 end
