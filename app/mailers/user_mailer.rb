@@ -42,3 +42,4 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: user.email, subject: "StFX Exchange: Upload your used Textbooks!"
   end
+end
