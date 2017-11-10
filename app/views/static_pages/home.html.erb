@@ -20,7 +20,7 @@
   <div class="home-button">
     <%= if !logged_in? then link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" end %>
   </div>
-
+<!--
   <% if @demands.nil? %>
     <div class="demand-box">
       <h3>See if we have the Book you need</h3>
@@ -32,7 +32,7 @@
       <% end %>
     </div>
   <% end %>
-
+-->
   <p>Or add your own used books</p>
   <div class="home-button">
     <%= link_to "Get rid of my Textbooks", if logged_in? then current_user else signup_path end, class: "btn btn-lg btn-primary" %>

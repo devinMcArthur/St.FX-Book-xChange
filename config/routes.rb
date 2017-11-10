@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   resources :books,               only: [:create, :destroy, :edit, :update]
   resources :conversations,       only: [:index, :create, :destroy]
   resources :demands,             only: [:create, :show, :destroy]
+  resources :notes
   resources :conversations do
     resources :messages, only: [:index, :create, :destroy]
   end
