@@ -32,12 +32,12 @@ class ApplicationController < ActionController::Base
                   # Existing Match with a streak
                   tempInt = match.streak += 1
                   match.update_attributes(:streak => tempInt)
-                  tempInt = match.weight + match.streak
+                  tempInt = match.weight + match.streak * word.length
                   match.update_attributes(:weight => tempInt)
                 else
                   # Existing match without a streak
                   match.streak = 1
-                  match.weight += match.streak
+                  match.weight += match.streak * word.length
                 end
                 # Make prev_match = Index number of the searched word
                 match.prev_match = index
