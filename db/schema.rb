@@ -26,11 +26,10 @@ ActiveRecord::Schema.define(version: 20171109184743) do
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "book_id"
     t.string   "negotiated_price"
-    t.boolean  "previous_trade",   default: false
   end
 
   create_table "demands", force: :cascade do |t|
