@@ -1,10 +1,12 @@
 class User < ApplicationRecord
   has_many :books, dependent: :destroy
-  has_many :conversations, dependent: :destroy
+  has_many :conversations, :foreign_key => :sender_id, dependent: :destroy
+  has_many :conversations, :foreign_key => :recipient_id, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :messages_received, class_name: 'Message', foreign_key: :to_id
   has_many :notifications, dependent: :destroy
   has_many :demands, dependent: :destroy
+  has_many :notes, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -14,6 +16,10 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
+  def conversation
+    sender_conversations + recipient_conversations
+  end
 
     # Return hash digest of given string
   def User.digest(string)

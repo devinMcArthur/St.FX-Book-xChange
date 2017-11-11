@@ -1,5 +1,5 @@
 <div class="center jumbotron">
-  <h1>Matches for "<%= @demands.title.titleize %>"</h1>
+  <h1>Matches for "<%= @demands.title.downcase.titleize %>"</h1>
   <!-- Match Loop -->
   <div class="match-scrollable">
     <% if @demands.matches.blank? %>
