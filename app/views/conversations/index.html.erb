@@ -24,8 +24,7 @@
           <% book = Book.find_by(id: outwardInterest.book_id).title %>
           <%= link_to recipient.name + ' - ' + book, conversation_messages_path(outwardInterest)%>
         <% else %>
-          <%= Book.find_by(id: outwardInterest.book_id).id %>
-          Error finding book
+          Error finding book - Please contact support to fix
         <% end %>
         <!-- Delete -->
         <% if current_user.id == outwardInterest.sender_id %> |
@@ -63,8 +62,7 @@
             (<%= inwardInterest.notifications.where(user_id: current_user.id, read: false).count %>)
           <% end %>
         <% else %>
-          <%= Book.find_by(id: inwardInterest.book_id).id %>
-          Error finding book
+          Error finding book - Please contact support to fix
         <% end %>
       </div>
      <% end %>
