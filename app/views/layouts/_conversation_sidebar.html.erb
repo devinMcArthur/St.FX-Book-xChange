@@ -21,8 +21,12 @@
       <% else %>
         <div class="conversation-content">
       <% end %>
-         <h2><%= Book.find_by(id: outwardInterest.book_id).title %></h2>
-         <h3><%= recipient.name %></h3>
+        <% if !Book.find_by(id: outwardInterest.book_id).blank? %>
+          <h2><%= Book.find_by(id: outwardInterest.book_id).title %></h2>
+          <h3><%= recipient.name %></h3>
+        <% else %>
+          <h2>Book not Found</h2>
+        <% end %>
          <% if outwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
            (<%= outwardInterest.notifications.where(user_id: current_user.id, read: false).count %>)
          <% end %>
@@ -59,8 +63,12 @@
          <% end %>
             <div class="row">
               <div class="col-md-9 col-sm-9 col-xs-8">
-               <h2><%= Book.find_by(id: inwardInterest.book_id).title %></h2>
-               <h3><%= recipient.name %></h3>
+                <% if !Book.find_by(id: inwardInterest.book_id).blank? %>
+                 <h2><%= Book.find_by(id: inwardInterest.book_id).title %></h2>
+                 <h3><%= recipient.name %></h3>
+                <% else %>
+                  <h2>Book not found<h2/>
+                <% end %>
               </div>
               <div class="col-md-2 col-sm-2 col-xs-2">
                 <div class="row sidebar-notification">
