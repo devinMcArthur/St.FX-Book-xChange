@@ -20,8 +20,12 @@
         <% if outwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
           <span class="glyphicon glyphicon-envelope"></span>
         <% end %>
-        <% book = Book.find_by(id: outwardInterest.book_id).title %>
-        <%= link_to recipient.name + ' - ' + book, conversation_messages_path(outwardInterest)%>
+        <% if !Book.find_by(id: outwardInterest.book_id).blank? %>
+          <% book = Book.find_by(id: outwardInterest.book_id).title %>
+          <%= link_to recipient.name + ' - ' + book, conversation_messages_path(outwardInterest)%>
+        <% else %>
+          <p>Error finding book</p>
+        <% end %>
         <!-- Delete -->
         <% if current_user.id == outwardInterest.sender_id %> |
           <%= link_to "Delete", outwardInterest, method: :delete, data: { confirm: "You sure?" } %>
@@ -51,10 +55,14 @@
         <% if inwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
           <span class="glyphicon glyphicon-envelope"></span>
         <% end %>
-        <% book = Book.find_by(id: inwardInterest.book_id).title %>
-        <%= link_to recipient.name + ' - ' + book, conversation_messages_path(inwardInterest)%>
-        <% if inwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
-          (<%= inwardInterest.notifications.where(user_id: current_user.id, read: false).count %>)
+        <% if !Book.find_by(id: inwardInterest.book_id).blank? %>
+          <% book = Book.find_by(id: inwardInterest.book_id).title %>
+          <%= link_to recipient.name + ' - ' + book, conversation_messages_path(inwardInterest)%>
+          <% if inwardInterest.notifications.where(user_id: current_user.id, read: false).exists? %>
+            (<%= inwardInterest.notifications.where(user_id: current_user.id, read: false).count %>)
+          <% end %>
+        <% else %>
+          <p>Error finding book</p>
         <% end %>
       </div>
      <% end %>
