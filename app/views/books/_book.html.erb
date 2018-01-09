@@ -19,10 +19,10 @@
     </h1>
   </span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(book.created_at) %> ago.
     <% if !book.asking_price.blank? %>
-      </br>Asking Price: <%= book.asking_price %>
+      Asking Price: <%= book.asking_price %></br>
     <% end %>
+    Posted <%= time_ago_in_words(book.created_at) %> ago.
     <% if current_user?(book.user) %>
       </br><%= link_to "delete", book, method: :delete, data: { confirm: "You sure?" } %>
       <%= form_for book do |f| %>
