@@ -7,6 +7,7 @@
     <% end %>
   </span>
   <span class="title">
+    <h1 class="book-title">
     <% if logged_in? && !current_user?(book.user) %>
       <%= link_to book.title, conversations_path(sender_id: current_user.id,
                                                  recipient_id: book.user_id,
@@ -15,6 +16,7 @@
     <% else %>
       <%= book.title %>
     <% end %>
+    </h1>
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(book.created_at) %> ago.

@@ -1,6 +1,6 @@
 <div class="center jumbotron">
   <%= image_tag("website_logo.png", alt: "website logo", id: "homepage-website-logo") %>
-  <% if !@demands.nil? %>
+  <% if !@tempDemand.nil? %>
     <div class="demand-box">
       <%= render 'shared/demand_box' %>
       <h3>Check for another book!</h3>
@@ -21,7 +21,7 @@
     <%= if !logged_in? then link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" end %>
   </div>
 
-  <% if @demands.nil? %>
+  <% if @tempDemand.nil? %>
     <div class="demand-box">
       <h3>See if we have the Book you need</h3>
       <%= form_for(@demand) do |f| %>
@@ -33,7 +33,7 @@
     </div>
   <% end %>
 
-  <p>Or add your own used books</p>
+  <p>Add your own used books</p>
   <div class="home-button">
     <%= link_to "Get rid of my Textbooks", if logged_in? then current_user else signup_path end, class: "btn btn-lg btn-primary" %>
   </div>

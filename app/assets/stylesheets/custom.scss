@@ -229,11 +229,23 @@ input {
 }
 
 .demand-form {
+  padding-bottom: 10px;
   font-size: inherit;
+  border-top: 1px solid;
+  border-top-color: rgba(43, 86, 155, 0.5);
+  border-bottom: 1px solid;
+  border-bottom-color: rgba(43, 86, 155, 0.5);
 }
 
 .book-form {
+  display: inline-block;
+  width: auto;
   font-size: inherit;
+  padding-bottom: 10px;
+  border-top: 1px solid;
+  border-top-color: rgba(43, 86, 155, 0.5);
+  border-bottom: 1px solid;
+  border-bottom-color: rgba(43, 86, 155, 0.5);
 }
 
 #session_remember_me {
@@ -274,6 +286,15 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+.book-title {
+  text-decoration: none;
+  color: $stfx_blue;
+  text-align: left;
+  font-size: 200%;
+  padding: 5px 0 5px 0;
+  margin: 0;
 }
 
 /* Sidebar */

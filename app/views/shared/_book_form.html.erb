@@ -4,6 +4,7 @@
     <%= render 'shared/error_messages', object: f.object %>
     <div class="field">
       <%= f.text_field :title, placeholder: " Book Title: Course name", class: "book-form-contents" %>
+      <%= f.text_field :asking_price, placeholder: " Asking Price", class: "book-form-contents" %>
     </div>
     <%= f.submit "Post", class: "btn btn-primary" %>
   <% end %>

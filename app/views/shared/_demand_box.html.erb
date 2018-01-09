@@ -1,5 +1,5 @@
 <div class="center jumbotron">
-  <h1>Matches for "<%= @demands.title.downcase.titleize %>"</h1>
+  <h1>Matches for: </h1><h1 style="color:#2b569b;"><%= @demands.title.downcase.titleize %></h1>
   <!-- Match Loop -->
   <div class="match-scrollable">
     <% if @demands.matches.blank? %>
@@ -26,7 +26,11 @@
     <% end %>
   </div>
   </br>
+  <% if current_user.nil? %>
+    <p>Don't see the book you need? Sign up now to make an official book request</p>
+    <%= link_to "Sign up", signup_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
   <% if !current_user.nil? && @demands.user_id = current_user.id && !current_page?(root_url) %>
-  <%= link_to "delete", @demands, method: :delete, data: { confirm: "You sure?" } %>
+    <%= link_to "delete", @demands, method: :delete, data: { confirm: "You sure?" } %>
   <% end %>
 </div>
