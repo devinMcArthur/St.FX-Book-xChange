@@ -17,6 +17,9 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  def DFFED23E9E88B847E028DB98410BAE2A
+  end
+
   private
 
   def temporary_delete

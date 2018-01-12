@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   get    '/demands' => 'demands#show'
   get    '/prompt'  => 'users#prompt'
 
+  get '/.well-known/pki-validation/DFFED23E9E88B847E028DB98410BAE2A.txt' => 'static_pages#DFFED23E9E88B847E028DB98410BAE2A'
+
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
