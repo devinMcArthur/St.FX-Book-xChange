@@ -8,6 +8,8 @@ class StaticPagesController < ApplicationController
     end
     if logged_in?
       @demands = Demand.where(user_id: current_user.id).last
+    else
+      @demands = @tempDemand
     end
   end
 

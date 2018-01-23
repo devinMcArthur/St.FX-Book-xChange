@@ -30,6 +30,7 @@
   <% if current_user.nil? %>
     <p>Don't see the book you need? Sign up now to make an official book request</p>
     <%= link_to "Sign up", signup_path, class: "btn btn-lg btn-primary" %>
+    <p>or<p>
   <% end %>
   <% if !current_user.nil? && @demands.user_id = current_user.id && !current_page?(root_url) %>
     <%= link_to "delete", @demands, method: :delete, data: { confirm: "You sure?" } %>
