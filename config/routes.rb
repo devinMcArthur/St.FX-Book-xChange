@@ -1,33 +1,26 @@
 Rails.application.routes.draw do
-  get 'demands/create'
-
-  get 'demands/destroy'
-
-  get 'demands/show'
-
-  get 'notifications/link_through'
-
-  get 'book_feed/show'
-
-  get 'password_resets/new'
-
-  get 'password_resets/edit'
-
-  get '/conversations' => 'conversations#index'
 
   root 'static_pages#home'
-  get    '/about'   => 'static_pages#about'
-  get    '/contact' => 'static_pages#contact'
-  get    '/signup'  => 'users#new'
-  post   '/signup'  => 'users#create'
-  get    '/login'   => 'sessions#new'
-  post   '/login'   => 'sessions#create'
-  delete '/logout'  => 'sessions#destroy'
-  get    '/books'   => 'books#show'
-  get    '/demands' => 'demands#show'
-  get    '/prompt'  => 'users#prompt'
 
-  get '/.well-known/pki-validation/DFFED23E9E88B847E028DB98410BAE2A.txt' => 'static_pages#DFFED23E9E88B847E028DB98410BAE2A'
+  get 'demands/create'
+  get 'demands/destroy'
+  get 'demands/show'
+  get 'notifications/link_through'
+  get 'book_feed/show'
+  get 'password_resets/new'
+  get 'password_resets/edit'
+
+  get    '/conversations' => 'conversations#index'
+  get    '/about'         => 'static_pages#about'
+  get    '/contact'       => 'static_pages#contact'
+  get    '/signup'        => 'users#new'
+  post   '/signup'        => 'users#create'
+  get    '/login'         => 'sessions#new'
+  post   '/login'         => 'sessions#create'
+  delete '/logout'        => 'sessions#destroy'
+  get    '/books'         => 'books#show'
+  get    '/demands'       => 'demands#show'
+  get    '/prompt'        => 'users#prompt'
 
   resources :users
   resources :account_activations, only: [:edit]
